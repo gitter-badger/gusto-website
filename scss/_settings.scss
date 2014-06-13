@@ -35,15 +35,16 @@
 // $include-html-grid-classes: $include-html-classes;
 // $include-xl-html-grid-classes: false;
 
-// $row-width: rem-calc(1000);
+$row-width: 90%;
 // $total-columns: 12;
 
 // Global
 
 // We use these to control various global styles
-// $body-bg: #fff;
-// $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-bg: $white;
+$body-font-color: $black;
+$body-font-family: $proxima;
+$font-weight-normal: 300;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
 
@@ -56,19 +57,19 @@
 // $default-float: left;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
-// $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
-// $success-color: #43AC6A;
-// $warning-color: #f08a24;
-// $info-color: #a0d3e8;
+$primary-color: $gusto;
+$secondary-color: $lightgray;
+$alert-color: $gusto;
+$success-color: $green;
+$warning-color: $blue;
+$info-color: $darkgray;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
 // $global-rounded: 1000px;
 
 // We use these to control inset shadow shiny edges and depressions.
-// $shiny-edge-size: 0 1px 0;
+$shiny-edge-size: 0px;
 // $shiny-edge-color: rgba(#fff, .5);
 // $shiny-edge-active-color: rgba(#000, .2);
 
@@ -120,10 +121,10 @@
 // $include-html-type-classes: $include-html-classes;
 
 // We use these to control header font styles
-// $header-font-family: $body-font-family;
-// $header-font-weight: $font-weight-normal;
+$header-font-family: $brandon;
+$header-font-weight: 700;
 // $header-font-style: normal;
-// $header-font-color: #222;
+$header-font-color: $black;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -137,16 +138,23 @@
 // $h5-font-size: rem-calc(18);
 // $h6-font-size: 1rem;
 
+h1, h2, h3, h4, h5, h6 { text-transform: uppercase; }
+
 // These control how subheaders are styled.
 // $subheader-line-height: 1.4;
-// $subheader-font-color: scale-color($header-font-color, $lightness: 35%);
+$subheader-font-color: $header-font-color;
 // $subheader-font-weight: $font-weight-normal;
 // $subheader-top-margin: .2rem;
 // $subheader-bottom-margin: .5rem;
 
+.subheader {
+  text-transform: none;
+  font-family: $proxima;
+}
+
 // A general <small> styling
 // $small-font-size: 60%;
-// $small-font-color: scale-color($header-font-color, $lightness: 35%);
+$small-font-color: $header-font-color;
 
 // We use these to style paragraphs
 // $paragraph-font-family: inherit;
@@ -168,7 +176,9 @@
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
 // $anchor-font-color: $primary-color;
-// $anchor-font-color-hover: scale-color($primary-color, $lightness: -14%);
+$anchor-font-color-hover: lighten($primary-color, 10%);
+
+a { @include single-transition(color, 0.2s, linear); }
 
 // We use these to style the <hr> element
 // $hr-border-width: 1px;
