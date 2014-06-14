@@ -176,9 +176,9 @@ $small-font-color: $header-font-color;
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
 // $anchor-font-color: $primary-color;
-$anchor-font-color-hover: lighten($primary-color, 10%);
+$anchor-font-color-hover: lighten($primary-color, $change);
 
-a { @include single-transition(color, 0.2s, linear); }
+a { @include single-transition(color, $time, linear); }
 
 // We use these to style the <hr> element
 // $hr-border-width: 1px;

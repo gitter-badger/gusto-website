@@ -9,6 +9,62 @@ $black: #2D2D2D;
 $lightgray: #DDD;
 $darkgray: #858585;
 
-$brandon: 'Brandon Grotesque', 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$proxima: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$corner: 'Corner Store', 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$change: 10%;
+$time: 0.2s;
+
+$brandon: 'Brandon Grotesque', 'brandon-grotesque', 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$proxima: 'Proxima Nova', 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$corner: 'CornerStoreJF', 'corner-store', 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+@mixin corner-store() {
+  font-family: $corner;
+  text-transform: none;
+}
+
+$colors: (
+  gusto $gusto,
+  poliana $poliana,
+  otl $onthelist,
+  jsf $jumpstart,
+  blue $blue,
+  green $green,
+  white $white,
+  black $black,
+  lightgray $lightgray,
+  darkgray $darkgray
+);
+
+@mixin box-shadow-working($hoff, $zoff, $blur, $color) {
+  -moz-box-shadow:    $hoff $zoff $blur $color;
+  -webkit-box-shadow: $hoff $zoff $blur $color;
+  box-shadow:         $hoff $zoff $blur $color;
+}
+
+@mixin color-classes() {
+  @each $color in $colors {
+    // Default hover color
+    $hover-color: $black;
+
+    // Determine hover color
+    @if lightness(nth($color, 2)) < 50% { $hover-color: lighten(nth($color, 2), $change); }
+    @else { $hover-color: darken(nth($color, 2), $change); }
+
+    // Text color
+    .#{nth($color, 1)}-text-color { color: nth($color, 2); }
+
+    // Link color
+    a.#{nth($color, 1)}-text-color {
+      color: nth($color, 2);
+      &:hover { color: $hover-color; }
+    }
+
+    // Background
+    .#{nth($color, 1)}-background-color { background: nth($color, 2); }
+
+    // Drop shadow
+    .#{nth($color, 1)}-background-shadow { @include box-shadow-working(0px, 1px, 0px, nth($color, 2)); }
+
+    // Text shadow
+    .#{nth($color, 1)}-text-shadow { @include single-text-shadow(0px, 1px, 0px, nth($color, 2)); }
+  }
+}
