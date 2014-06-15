@@ -44,10 +44,17 @@ $colors: (
   @each $color in $colors {
     // Default hover color
     $hover-color: $black;
+    $second-hover-color: $black;
 
     // Determine hover color
-    @if lightness(nth($color, 2)) < 50% { $hover-color: lighten(nth($color, 2), $change); }
-    @else { $hover-color: darken(nth($color, 2), $change); }
+    @if lightness(nth($color, 2)) < 50% {
+      $hover-color: lighten(nth($color, 2), $change);
+      $second-hover-color: lighten(nth($color, 2), $change * 2);
+    }
+    @else {
+      $hover-color: darken(nth($color, 2), $change);
+      $second-hover-color: darken(nth($color, 2), $change * 2);
+    }
 
     // Text color
     .#{nth($color, 1)}-text-color { color: nth($color, 2); }
@@ -65,6 +72,12 @@ $colors: (
     .#{nth($color, 1)}-background-shadow { @include box-shadow-working(0px, 1px, 0px, nth($color, 2)); }
 
     // Text shadow
-    .#{nth($color, 1)}-text-shadow { @include single-text-shadow(0px, 1px, 0px, nth($color, 2)); }
+    .#{nth($color, 1)}-text-shadow { @include text-shadow(0px 1px 0px $hover-color); }
+
+    // Text shadow on links
+    a.#{nth($color, 1)}-text-shadow {
+      @include text-shadow(0px 1px 0px $hover-color);
+      &:hover { @include text-shadow(0px 1px 0px $second-hover-color); }
+    }
   }
 }
