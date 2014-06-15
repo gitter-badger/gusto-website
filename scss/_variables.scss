@@ -16,9 +16,40 @@ $brandon: 'Brandon Grotesque', 'brandon-grotesque', 'proxima-nova', 'Helvetica N
 $proxima: 'Proxima Nova', 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $corner: 'CornerStoreJF', 'corner-store', 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-@mixin corner-store() {
-  font-family: $corner;
-  text-transform: none;
+@mixin box-shadow-working($hoff, $zoff, $blur, $color) {
+  -webkit-box-shadow: $hoff $zoff $blur $color;
+  -moz-box-shadow:    $hoff $zoff $blur $color;
+  box-shadow:         $hoff $zoff $blur $color;
+}
+
+@mixin border-radius-working($radius) {
+  -webkit-border-radius: $radius;
+  -khtml-border-radius:  $radius;
+  -moz-border-radius:    $radius;
+  border-radius:         $radius;
+}
+
+@mixin background-size-working($size) {
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  background-size: $size;
+}
+
+$fonts: (
+  brandon-grotesque $brandon,
+  proxima-nova $proxima,
+  corner-store $corner
+);
+
+@mixin font-classes() {
+  @each $font in $fonts {
+    .#{nth($font, 1)} {
+      font-family: nth($font, 2);
+
+      @if(nth($font, 1) == "brandon-grotesque") { text-transform: uppercase; }
+      @else { text-transform: none; }
+    }
+  }
 }
 
 $colors: (
@@ -33,12 +64,6 @@ $colors: (
   lightgray $lightgray,
   darkgray $darkgray
 );
-
-@mixin box-shadow-working($hoff, $zoff, $blur, $color) {
-  -moz-box-shadow:    $hoff $zoff $blur $color;
-  -webkit-box-shadow: $hoff $zoff $blur $color;
-  box-shadow:         $hoff $zoff $blur $color;
-}
 
 @mixin color-classes() {
   @each $color in $colors {

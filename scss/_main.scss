@@ -1,6 +1,107 @@
 ::selection { background: rgba($black, 0.75); color: $white; }
 ::-moz-selection { background: rgba($black, 0.75); color: $white; }
 
+@include font-classes();
 @include color-classes();
 
-.corner-store { @include corner-store(); }
+#stem-holder {
+  $stem-width: 10px;
+  position: relative;
+  z-index: -1;
+  height: 0px;
+  #stem {
+    position: fixed;
+    width: 100%;
+    height: 50%;
+    top: 0px;
+    background: $gusto;
+    z-index: 1;
+  }
+  /*#stem-node {
+    $stem-node-multiplier: 3.5;
+    position: fixed;
+    width: $stem-width * $stem-node-multiplier;
+    height: $stem-width * $stem-node-multiplier;
+    top: 50%;
+    left: 50%;
+    margin-left: -1 * ($stem-width * ($stem-node-multiplier / 2));
+    margin-top: -1 * ($stem-width * ($stem-node-multiplier / 2));
+    border: $stem-width solid $gusto;
+    @include border-radius-working(1000px);
+    background: $white;
+    z-index: 1;
+  }*/
+  #stem-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    background: $white;
+    z-index: 0;
+  }
+  /*#stem {
+    position: fixed;
+    width: $stem-width;
+    height: 50%;
+    top: 0px;
+    background: $gusto;
+    z-index: 1;
+  }
+  #stem-node {
+    $stem-node-multiplier: 3.5;
+    position: fixed;
+    width: $stem-width * $stem-node-multiplier;
+    height: $stem-width * $stem-node-multiplier;
+    top: 50%;
+    left: 50%;
+    margin-left: -1 * ($stem-width * ($stem-node-multiplier / 2));
+    margin-top: -1 * ($stem-width * ($stem-node-multiplier / 2));
+    border: $stem-width solid $gusto;
+    @include border-radius-working(1000px);
+    background: $white;
+    z-index: 1;
+  }
+  #stem-background {
+    position: fixed;
+    width: $stem-width;
+    height: 100%;
+    top: 0px;
+    background: $white;
+    z-index: 0;
+  }*/
+}
+
+.stem-images-holder {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  .stem-plug {
+    float: left;
+    height: 100%;
+    background: $white;
+  }
+  .stem-image {
+    display: block;
+    float: left;
+    @include background-size-working(contain);
+    &.vertical {
+      background-image: url('../images/vertical-bar.png');
+      background-repeat: repeat-y;
+      height: 100%;
+      width: 100px;
+    }
+    &.horizontal {
+      background-image: url('../images/horizontal-bar.png');
+      background-repeat: repeat-x;
+      height: 100px;
+    }
+  }
+}
+
+#title-section {
+  padding-top: 80px;
+  @media #{$medium-up} { padding-top: 160px; }
+  h1 { margin-bottom: 15px; }
+}
