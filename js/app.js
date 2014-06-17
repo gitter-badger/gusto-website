@@ -12,6 +12,9 @@ $(document).foundation();
 $(document).ready(function() {
   if(getMediaQuery() != "small")
     d3Lines();
+
+  if(location.hash.length > 1)
+    scrollToPos(location.hash);
 });
 
 $(window).scroll(function() {
@@ -34,6 +37,13 @@ $(window).resize(function() {
     $svg.remove();
 });
 
+$('[data-section]').waypoint(function() {
+  var id = $(this).attr('id');
+
+  history.pushState(null, "Gusto is " + id, "#" + id);
+  document.title = "Gusto is " + id + " | Build your idea with Gusto";
+});
+
 // Get the current media query
 function getMediaQuery() {
 	var level = parseInt($stateIndicator.css('z-index'));
@@ -46,6 +56,21 @@ function getMediaQuery() {
 		return "large";
 }
 
+// Scroll to a section on a page in an optional amount of time
+function scrollToPos(id, time) {
+	if(time == undefined)
+		time = 500;
+	else
+		time = time;
+
+	$('html, body').animate({
+		scrollTop: $(id).offset().top
+	}, time, 'swing', function() {
+    window.location.hash = id;
+  });
+}
+
+// Draw d3 paths
 function d3Lines() {
   var svg = d3.select("body").append("svg")
     .attr("width", width)
