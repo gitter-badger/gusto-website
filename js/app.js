@@ -2,13 +2,12 @@
 // Documentation can be found at: http://foundation.zurb.com/docs
 $(document).foundation();
 
-$(document).ready(function() {
-
-});
-
 var width = $(document).width();
 var height = $(document).height();
 var aspect = width / height;
+var scrollPos = $(window).scrollTop();
+var windowWidth = $(window).width();
+var windowHeight = $(window).height();
 
 var svg = d3.select("body").append("svg")
   .attr("width", width)
@@ -82,9 +81,9 @@ var node = svg.append("circle")
 
 // This animates our line down the page
 // Ensure that the length of the line is the same as the length of the page!
-function drawLineNode(line, node, scrollPos, windowHeight, documentHeight) {
+function drawLineNode(line, node, scrollPos) {
   var pathLength = line.getTotalLength(),
-    maxScrollTop = documentHeight - windowHeight,
+    maxScrollTop = height - windowHeight,
     percentDone = scrollPos / maxScrollTop,
     length = percentDone * pathLength,
     difference = (scrollPos + (windowHeight / 2)) - line.getPointAtLength(length).y,
@@ -97,22 +96,26 @@ function drawLineNode(line, node, scrollPos, windowHeight, documentHeight) {
   var newPosition = line.getPointAtLength(newLength);
 
   // Give the node its proper placement
-  node.attr("cx", newPosition.x)
-    .attr("cy", newPosition.y);
+  node.attr("cx", newPosition.x).attr("cy", newPosition.y);
 }
 
-  var scrollPos = $(window).scrollTop();
-  var windowHeight = $(window).height();
-  var documentHeight = $(document).height();
-
 // Call it for the first time
-drawLineNode(path2[0][0], node, scrollPos, windowHeight, documentHeight);
+drawLineNode(path2[0][0], node, scrollPos);
 
 // Call things when we scroll
 $(window).scroll(function() {
   scrollPos = $(window).scrollTop();
-  windowHeight = $(window).height();
-  documentHeight = $(document).height();
 
-  drawLineNode(path2[0][0], node, scrollPos, windowHeight, documentHeight);
+  drawLineNode(path2[0][0], node, scrollPos);
+});
+
+$(window).resize(function() {
+  width = $(document).width();
+  height = $(document).height();
+  aspect = width / height;
+  scrollPos = $(window).scrollTop();
+  windowWidth = $(window).width();
+  windowHeight = $(window).height();
+
+  svg.attr("width", windowWidth).attr("height", height);
 });
