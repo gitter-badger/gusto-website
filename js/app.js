@@ -74,20 +74,45 @@ var path2 = svg.append("path")
   .attr("class", "line")
   .attr("d", line);
 
+var node = svg.append("circle")
+  .attr("id", "node")
+  .attr("r", 12)
+  .attr("cx", 0)
+  .attr("cy", 0);
+
 // This animates our line down the page
 // Ensure that the length of the line is the same as the length of the page!
-function drawLine(line, scrollPos, windowHeight, documentHeight) {
-  line.style.strokeDasharray = [(scrollPos + (windowHeight / 2)), documentHeight].join(' ');
+function drawLineNode(line, node, scrollPos, windowHeight, documentHeight) {
+  var pathLength = line.getTotalLength(),
+    maxScrollTop = documentHeight - windowHeight,
+    percentDone = scrollPos / maxScrollTop,
+    length = percentDone * pathLength,
+    difference = (scrollPos + (windowHeight / 2)) - line.getPointAtLength(length).y,
+    multiplier = 0.5,
+    newLength = length + (multiplier * difference);
+
+  // Give a multiplier of 1 immediately catch up to the center of the page
+  line.style.strokeDasharray = [newLength, pathLength].join(' ');
+
+  var newPosition = line.getPointAtLength(newLength);
+
+  // Give the node its proper placement
+  node.attr("cx", newPosition.x)
+    .attr("cy", newPosition.y);
 }
 
+  var scrollPos = $(window).scrollTop();
+  var windowHeight = $(window).height();
+  var documentHeight = $(document).height();
+
 // Call it for the first time
-drawLine(path2[0][0]);
+drawLineNode(path2[0][0], node, scrollPos, windowHeight, documentHeight);
 
 // Call things when we scroll
 $(window).scroll(function() {
-  var scrollPos = $(window).scrollTop(),
-    windowHeight = $(window).height(),
-    documentHeight = $(document).height();
+  scrollPos = $(window).scrollTop();
+  windowHeight = $(window).height();
+  documentHeight = $(document).height();
 
-  drawLine(path2[0][0], scrollPos, windowHeight, documentHeight);
+  drawLineNode(path2[0][0], node, scrollPos, windowHeight, documentHeight);
 });
