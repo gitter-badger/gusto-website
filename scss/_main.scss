@@ -16,6 +16,25 @@
 	@media #{$large-only} { z-index: 6; }
 }
 
+section {
+  @extend .white-background-color;
+  padding: 20px 0px;
+  .row {
+    opacity: 0.25;
+    @include single-transition(opacity, $time * 2, linear);
+    &.fadeIn { opacity: 1; }
+  }
+  &.heading {
+    margin: 80px inherit;
+    @media #{$medium-up} { margin: 160px inherit; }
+  }
+  &#building {
+    padding-top: 80px;
+    @media #{$medium-up} { padding-top: 160px; }
+    h1 { margin-bottom: 15px; }
+  }
+}
+
 #trail {
   position: absolute;
   background: $white;
@@ -37,10 +56,4 @@
     stroke: $gusto;
     stroke-width: 10px;
   }
-}
-
-#title-section {
-  padding-top: 80px;
-  @media #{$medium-up} { padding-top: 160px; }
-  h1 { margin-bottom: 15px; }
 }

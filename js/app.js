@@ -44,6 +44,10 @@ $('[data-section]').waypoint(function() {
   document.title = "Gusto is " + id + " | Build your idea with Gusto";
 });
 
+$('section').waypoint(function() {
+  $(this).find('.row').addClass('fadeIn');
+}, { offset: '50%' });
+
 // Get the current media query
 function getMediaQuery() {
 	var level = parseInt($stateIndicator.css('z-index'));
