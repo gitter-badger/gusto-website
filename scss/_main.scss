@@ -27,15 +27,3 @@
   @media #{$medium-up} { padding-top: 160px; }
   h1 { margin-bottom: 15px; }
 }
-
-// DELETE THIS AFTER TESTING
-.test {
-  display: block;
-  margin: 200px auto;
-  width: 200px;
-  height: 200px;
-  background-image: url('https://www.poliana.com/assets/logo-1f34130e0cc76eee163ef21937922c32.png');
-  background-repeat: no-repeat;
-  @include background-size-working(140px auto);
-  background-position: 50% 50%;
-}

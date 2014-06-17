@@ -13,9 +13,7 @@ var aspect = width / height;
 var svg = d3.select("body").append("svg")
   .attr("width", width)
   .attr("height", height)
-  .attr("id", "trail")
-  .attr("viewBox", '0 0 ' + width + ' ' + height)
-  .attr("preserveAspectRatio", "xMidYMid");
+  .attr("id", "trail");
 
 var points = [];
 
@@ -76,21 +74,20 @@ var path2 = svg.append("path")
   .attr("class", "line")
   .attr("d", line);
 
-function drawLine(line) {
-  var pathLength = line.getTotalLength(),
-    maxScrollTop = $(document).height() - $(window).height(),
-    percentDone = $(window).scrollTop() / maxScrollTop,
-    length = percentDone * pathLength;
-
-  line.style.strokeDasharray = [length, pathLength].join(' ');
+// This animates our line down the page
+// Ensure that the length of the line is the same as the length of the page!
+function drawLine(line, scrollPos, windowHeight, documentHeight) {
+  line.style.strokeDasharray = [(scrollPos + (windowHeight / 2)), documentHeight].join(' ');
 }
 
+// Call it for the first time
 drawLine(path2[0][0]);
-$(window).scroll(function() { drawLine(path2[0][0]); });
 
-$(window).on("resize", function() {
-  var targetWidth = $(window).width();
+// Call things when we scroll
+$(window).scroll(function() {
+  var scrollPos = $(window).scrollTop(),
+    windowHeight = $(window).height(),
+    documentHeight = $(document).height();
 
-  svg.attr("width", targetWidth)
-    .attr("height", targetWidth / aspect);
+  drawLine(path2[0][0], scrollPos, windowHeight, documentHeight);
 });
