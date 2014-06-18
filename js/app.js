@@ -5,16 +5,36 @@ var width = $(document).width(),
   windowWidth = $(window).width(),
   windowHeight = $(window).height(),
   $stateIndicator = $('.state-indicator'),
-  $svg = $('#trail');
+  $svg = $('#trail'),
+  $timeline = $('#timeline');
 
 $(document).foundation();
 
 $(document).ready(function() {
   if(getMediaQuery() != "small")
-    d3Lines();
+    d3NodePaths();
 
   if(location.hash.length > 1)
     scrollToPos(location.hash);
+
+  companyTimeline();
+
+  $('[data-section]').waypoint(function() {
+    var id = $(this).attr('id');
+
+    history.pushState(null, "Gusto is " + id, "#" + id);
+
+    document.title = "Gusto is " + id.replace(/-/g, ' ').capitalize() + " | Build your idea with Gusto";
+  }, {
+    offset: function() {
+      if($(this).index() > 0)
+        return 50;
+      else
+        return 0
+    }
+  });
+
+  new WOW().init();
 });
 
 $(window).scroll(function() {
@@ -32,7 +52,7 @@ $(window).resize(function() {
   $svg = $('#trail');
 
   if(getMediaQuery() != "small" && $svg.length != 1)
-    d3Lines();
+    d3NodePaths();
   else if(getMediaQuery() == "small")
     $svg.remove();
 });
@@ -68,25 +88,31 @@ function scrollToPos(id, time) {
   });
 }
 
-$('[data-section]').waypoint(function() {
-  var id = $(this).attr('id');
+function companyTimeline() {
+  $timeline.css("height", height);
 
-  history.pushState(null, "Gusto is " + id, "#" + id);
+  $('[data-company]').each(function(index) {
+    var info = $(this).attr('data-company'),
+      comma = info.indexOf(','),
+      colorClass = info.substring(0, comma),
+      date = info.substring(comma + 1),
+      offset = $(this).offset();
 
-  document.title = "Gusto is " + id.replace(/-/g, ' ').capitalize() + " | Build your idea with Gusto";
-}, {
-  offset: function() {
-    if($(this).index() > 0)
-      return 50;
-    else
-      return 0
-  }
-});
-
-new WOW().init();
+    $timeline.append($('<div>')
+      .addClass("company " + colorClass)
+      .append($('<p>')
+        .addClass("date")
+        .html(date)
+        .css("left", index * -10)
+      )
+      .css("margin-top", offset.top)
+      .css("height", height - offset.top)
+    );
+  });
+}
 
 // Draw d3 paths
-function d3Lines() {
+function d3NodePaths() {
   var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -173,7 +199,7 @@ function d3Lines() {
   var path1 = svg.append("path")
     .datum(points)
     .attr("id", "gray-path")
-    .attr("class", "line")
+    .attr("class", "line animated fadeIn")
     .attr("d", line);
 
   var path2 = svg.append("path")

@@ -37,13 +37,18 @@ section {
     @extend .vertical-padding-20;
     @extend .vertical-margin-80;
     margin-bottom: 160px;
+    display: none;
+    @media #{$medium-up} { display: block; }
     h3, h4 { text-align: center; }
   }
   &#awesome {
     @extend .white-background-color;
     padding-top: 80px;
-    margin-bottom: 160px;
-    @media #{$medium-up} { padding-top: 160px; }
+    margin-bottom: 40px;
+    @media #{$medium-up} {
+      padding-top: 160px;
+      margin-bottom: 160px;
+    }
     h1 { margin-bottom: 15px; }
   }
   &#poliana, &#on-the-list, &#jumpstart-foundry, &#here {
@@ -76,15 +81,15 @@ section {
         }
         p {
           @extend .brandon-grotesque;
-          @extend .vertical-margin-10;
           font-weight: 700;
           text-align: center;
+          margin: 10px 0px 30px 0px;
         }
       }
     }
   }
   &#hard-working {
-    @extend .vertical-padding-60;
+    @extend .vertical-padding-80;
     @extend .gusto-background-color;
   }
 }
@@ -109,5 +114,47 @@ section {
     fill: $white;
     stroke: $gusto;
     stroke-width: 10px;
+  }
+}
+
+#timeline {
+  $companies: (
+    gusto $gusto,
+    poliana $poliana,
+    otl $onthelist,
+    jsf $jumpstart
+  );
+  $timeline-num: length($companies);
+  $timeline-small-width: $timeline-num + 0px;
+  $timeline-large-width: $timeline-small-width * 2.5;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  overflow: visible;
+  height: 100%;
+  width: $timeline-small-width * $timeline-num;
+  @media #{$medium-up} { width: $timeline-large-width * $timeline-num; }
+  .company {
+    position: relative;
+    float: left;
+    height: auto;
+    width: $timeline-small-width;
+    @media #{$medium-up} { width: $timeline-large-width; }
+    @each $company in $companies {
+      &.#{nth($company, 1)} { background: nth($company, 2); }
+    }
+    .date {
+      position: absolute;
+      top: -20px;
+      height: 20px;
+      width: 50px;
+      @extend .brandon-grotesque;
+      font-size: 0.8em;
+      font-weight: bold;
+      border-bottom: 2px solid $black;
+      display: none;
+      @media #{$medium-up} { display: block; }
+    }
   }
 }
