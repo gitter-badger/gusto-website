@@ -32,16 +32,11 @@
 
 section {
   @extend .vertical-padding-20;
-  .row {
-    opacity: 0.25;
-    @include single-transition(opacity, $time * 2, linear);
-    &.fadeIn { opacity: 1; }
-  }
   &.heading {
     @extend .white-background-color;
     @extend .vertical-padding-20;
     @extend .vertical-margin-80;
-    margin-bottom: 200px;
+    margin-bottom: 160px;
     h3, h4 { text-align: center; }
   }
   &#awesome {

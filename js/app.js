@@ -83,9 +83,7 @@ $('[data-section]').waypoint(function() {
   }
 });
 
-$('section').waypoint(function() {
-  $(this).find('.row').addClass('fadeIn');
-}, { offset: '50%' });
+new WOW().init();
 
 // Draw d3 paths
 function d3Lines() {
