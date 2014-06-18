@@ -3,6 +3,7 @@
 
 @include font-classes();
 @include color-classes();
+@include spacing-classes();
 
 .state-indicator {
 	position: absolute;
@@ -16,22 +17,80 @@
 	@media #{$large-only} { z-index: 6; }
 }
 
+.inline-list {
+  &.small-only-center {
+    @media #{$small-only} {
+      display: table;
+      margin: 0px auto 20px auto;
+      li {
+        &:first-of-type { margin-left: 0px; }
+      }
+    }
+  }
+}
+
+
 section {
-  @extend .white-background-color;
-  padding: 20px 0px;
+  @extend .vertical-padding-20;
   .row {
     opacity: 0.25;
     @include single-transition(opacity, $time * 2, linear);
     &.fadeIn { opacity: 1; }
   }
   &.heading {
-    margin: 80px inherit;
-    @media #{$medium-up} { margin: 160px inherit; }
+    @extend .white-background-color;
+    @extend .vertical-padding-20;
+    @extend .vertical-margin-80;
+    margin-bottom: 200px;
+    h3, h4 { text-align: center; }
   }
-  &#building {
+  &#awesome {
+    @extend .white-background-color;
     padding-top: 80px;
+    margin-bottom: 160px;
     @media #{$medium-up} { padding-top: 160px; }
     h1 { margin-bottom: 15px; }
+  }
+  &#poliana, &#on-the-list, &#jumpstart-foundry, &#here {
+    .large-3 {
+      img {
+        width: 140px;
+        height: auto;
+        display: block;
+        margin: 0px auto;
+      }
+    }
+    .large-8 {
+      .content {
+        font-size: 1.1em;
+        line-height: 1.75em;
+      }
+      .social {
+        li {
+          span {
+            font-size: 1.5em;
+          }
+        }
+      }
+      .traits {
+        @extend .vertical-margin-40;
+        span {
+          font-size: 3em;
+          text-align: center;
+          display: block;
+        }
+        p {
+          @extend .brandon-grotesque;
+          @extend .vertical-margin-10;
+          font-weight: 700;
+          text-align: center;
+        }
+      }
+    }
+  }
+  &#hard-working {
+    @extend .vertical-padding-60;
+    @extend .gusto-background-color;
   }
 }
 

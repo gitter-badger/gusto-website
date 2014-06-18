@@ -106,3 +106,27 @@ $colors: (
     }
   }
 }
+
+@mixin spacing-classes() {
+  @for $i from 1 through 10 {
+    $small: $i * 5px;
+    $large: $i * 10px;
+
+    .vertical-padding-#{$i * 10} {
+      padding: $small inherit;
+      @media #{$medium-up} { padding: $large inherit; }
+    }
+    .horizontal-padding-#{$i * 10} {
+      padding: inherit $small;
+      @media #{$medium-up} { padding: inherit $large; }
+    }
+    .vertical-margin-#{$i * 10} {
+      margin: $small inherit;
+      @media #{$medium-up} { margin: $large inherit; }
+    }
+    .horizontal-margin-#{$i * 10} {
+      margin: inherit $small;
+      @media #{$medium-up} { margin: inherit $large; }
+    }
+  }
+}

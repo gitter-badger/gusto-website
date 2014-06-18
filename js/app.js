@@ -37,16 +37,10 @@ $(window).resize(function() {
     $svg.remove();
 });
 
-$('[data-section]').waypoint(function() {
-  var id = $(this).attr('id');
-
-  history.pushState(null, "Gusto is " + id, "#" + id);
-  document.title = "Gusto is " + id + " | Build your idea with Gusto";
-});
-
-$('section').waypoint(function() {
-  $(this).find('.row').addClass('fadeIn');
-}, { offset: '50%' });
+// Add capitalize to strings
+String.prototype.capitalize = function() {
+    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
 
 // Get the current media query
 function getMediaQuery() {
@@ -68,11 +62,30 @@ function scrollToPos(id, time) {
 		time = time;
 
 	$('html, body').animate({
-		scrollTop: $(id).offset().top
+		scrollTop: $(id).offset().top - 50
 	}, time, 'swing', function() {
     window.location.hash = id;
   });
 }
+
+$('[data-section]').waypoint(function() {
+  var id = $(this).attr('id');
+
+  history.pushState(null, "Gusto is " + id, "#" + id);
+
+  document.title = "Gusto is " + id.replace(/-/g, ' ').capitalize() + " | Build your idea with Gusto";
+}, {
+  offset: function() {
+    if($(this).index() > 0)
+      return 50;
+    else
+      return 0
+  }
+});
+
+$('section').waypoint(function() {
+  $(this).find('.row').addClass('fadeIn');
+}, { offset: '50%' });
 
 // Draw d3 paths
 function d3Lines() {
@@ -86,67 +99,74 @@ function d3Lines() {
   var points = [];
 
   $('[data-stop]').each(function() {
-    var value = $(this).attr('data-stop'),
-      hyphenPos = value.indexOf('-'),
-      xAxis = value.substring(hyphenPos + 1),
-      yAxis = value.substring(0, hyphenPos),
-      offset = $(this).offset(),
-      width = $(this).width(),
-      height = $(this).height();
+    var $elem = $(this);
+    var value = $elem.attr('data-stop');
 
-    var stop = [];
+    var positions = value.split(',');
 
-    if(value !== "left-circle" && value !== "right-circle") {
-      if(xAxis === "left")
-        stop.push(offset.left);
-      else if(xAxis === "center")
-        stop.push(offset.left + (width / 2));
-      else if(xAxis === "right")
-        stop.push(offset.left + width);
+    $.each(positions, function(index, value) {
+      var hyphenPos = value.indexOf('-'),
+        xAxis = value.substring(hyphenPos + 1),
+        yAxis = value.substring(0, hyphenPos),
+        offset = $elem.offset(),
+        width = $elem.outerWidth(),
+        height = $elem.outerHeight(),
+        stop = [];
 
-      if(yAxis === "top")
-        stop.push(offset.top);
-      else if(yAxis === "middle")
-        stop.push(offset.top + (height / 2));
-      else if(yAxis === "bottom")
-        stop.push(offset.top + height);
+      if(value !== "left-circle" && value !== "right-circle") {
+        if(xAxis === "left")
+          stop.push(offset.left);
+        else if(xAxis === "center")
+          stop.push(offset.left + (width / 2));
+        else if(xAxis === "right")
+          stop.push(offset.left + width);
 
-      points.push(stop);
-    }
-    else {
-      var radius = width / 2,
-        centerX = offset.left + (width / 2),
-        centerY = offset.top + (height / 2);
+        if(yAxis === "top")
+          stop.push(offset.top);
+        else if(yAxis === "middle")
+          stop.push(offset.top + (height / 2));
+        else if(yAxis === "bottom")
+          stop.push(offset.top + height);
 
-      function angleCoord(angle) {
-        return [centerX + (radius * Math.sin(angle)), centerY + (radius * Math.cos(angle))];
+        points.push(stop);
       }
+      else {
+        var radius = width / 2,
+          centerX = offset.left + (width / 2),
+          centerY = offset.top + (height / 2);
 
-      if(value === "left-circle") {
-        points.push(
-          angleCoord(-90),
-          angleCoord(-45),
-          angleCoord(0),
-          angleCoord(45),
-          angleCoord(90),
-          angleCoord(135),
-          angleCoord(180),
-          angleCoord(225)
-        );
+        function angleCoord(angle) {
+          return [centerX + (radius * Math.sin(angle)), centerY + (radius * Math.cos(angle))];
+        }
+
+        if(value === "left-circle") {
+          points.push(
+            angleCoord(-90),
+            angleCoord(-45),
+            angleCoord(0),
+            angleCoord(45),
+            angleCoord(90),
+            angleCoord(135),
+            angleCoord(180),
+            angleCoord(225),
+            angleCoord(270)
+          );
+        }
+        else if(value === "right-circle") {
+          points.push(
+            angleCoord(90),
+            angleCoord(45),
+            angleCoord(0),
+            angleCoord(-45),
+            angleCoord(-90),
+            angleCoord(-135),
+            angleCoord(-180),
+            angleCoord(-225),
+            angleCoord(-270)
+          );
+        }
       }
-      else if(value === "right-circle") {
-        points.push(
-          angleCoord(90),
-          angleCoord(45),
-          angleCoord(0),
-          angleCoord(-45),
-          angleCoord(-90),
-          angleCoord(-135),
-          angleCoord(-180),
-          angleCoord(-225)
-        );
-      }
-    }
+    });
   });
 
   var line = d3.svg.line()
