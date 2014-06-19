@@ -3,7 +3,7 @@ var $footer = $('#footer'),
   $svg = $('#trail'),
   $timeline = $('#timeline')
   width = $(document).width(),
-  height = $footer.offset().top + $footer.outerHeight(true),
+  height = $footer.offset().top + $footer.outerHeight(true) + 8,
   aspect = width / height,
   scrollPos = $(window).scrollTop(),
   windowWidth = $(window).width(),
@@ -43,16 +43,24 @@ $(document).ready(function() {
     var enterClass = $(this).attr('data-enter');
     var exitClass = $(this).attr('data-exit');
 
-    if(direction === "down")
-      $(this).removeClass(exitClass).addClass(enterClass);
+    if(!$(this).hasClass('company')) {
+      if(direction === "down")
+        $(this).removeClass(exitClass).addClass(enterClass);
+      else
+        $(this).removeClass(enterClass).addClass(exitClass);
+    }
     else
-      $(this).removeClass(enterClass).addClass(exitClass);
+      $(this).removeClass(exitClass).addClass(enterClass);
   }, { offset: '100%' }).waypoint(function(direction) {
     var enterClass = $(this).attr('data-enter');
     var exitClass = $(this).attr('data-exit');
 
-    if(direction == "down")
-      $(this).removeClass(enterClass).addClass(exitClass);
+    if(!$(this).hasClass('company')) {
+      if(direction == "down")
+        $(this).removeClass(enterClass).addClass(exitClass);
+      else
+        $(this).removeClass(exitClass).addClass(enterClass);
+    }
     else
       $(this).removeClass(exitClass).addClass(enterClass);
   });
@@ -119,7 +127,9 @@ function companyTimeline() {
       date = info.substring(comma + 1);
 
     $timeline.append($('<div>')
-      .addClass("company wow fadeInLeft " + colorClass)
+      .addClass("company animated " + colorClass)
+      .attr("data-enter", "fadeInLeft")
+      .attr("data-exit", "fadeOutLeft")
       .append($('<p>')
         .addClass("date")
         .html(date)
