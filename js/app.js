@@ -1,12 +1,13 @@
-var width = $(document).width(),
-  height = $(document).height(),
+var $footer = $('#footer'),
+  $stateIndicator = $('.state-indicator'),
+  $svg = $('#trail'),
+  $timeline = $('#timeline')
+  width = $(document).width(),
+  height = $footer.offset().top + $footer.outerHeight(true),
   aspect = width / height,
   scrollPos = $(window).scrollTop(),
   windowWidth = $(window).width(),
-  windowHeight = $(window).height(),
-  $stateIndicator = $('.state-indicator'),
-  $svg = $('#trail'),
-  $timeline = $('#timeline');
+  windowHeight = $(window).height();
 
 $(document).foundation();
 
@@ -18,13 +19,17 @@ $(document).ready(function() {
     scrollToPos(location.hash);
 
   companyTimeline();
+  companyTimelineHeight();
 
   $('[data-section]').waypoint(function() {
     var id = $(this).attr('id');
 
-    history.pushState(null, "Gusto is " + id, "#" + id);
+    history.pushState(null, "", "#" + id);
 
-    document.title = "Gusto is " + id.replace(/-/g, ' ').capitalize() + " | Build your idea with Gusto";
+    if(id !== "gusto")
+      document.title = "Gusto is " + id.replace(/-/g, ' ').capitalize() + " | Build your idea with Gusto";
+    else
+      document.title = "We are " + id.replace(/-/g, ' ').capitalize() + " | Build your idea with Gusto";
   }, {
     offset: function() {
       if($(this).index() > 0)
@@ -43,7 +48,7 @@ $(window).scroll(function() {
 
 $(window).resize(function() {
   width = $(document).width();
-  height = $(document).height();
+  height = $footer.offset().top + $footer.outerHeight(true);
   aspect = width / height;
   scrollPos = $(window).scrollTop();
   windowWidth = $(window).width();
@@ -55,6 +60,8 @@ $(window).resize(function() {
     d3NodePaths();
   else if(getMediaQuery() == "small")
     $svg.remove();
+
+  companyTimelineHeight(height);
 });
 
 // Add capitalize to strings
@@ -89,25 +96,31 @@ function scrollToPos(id, time) {
 }
 
 function companyTimeline() {
-  $timeline.css("height", height);
-
   $('[data-company]').each(function(index) {
     var info = $(this).attr('data-company'),
       comma = info.indexOf(','),
       colorClass = info.substring(0, comma),
-      date = info.substring(comma + 1),
-      offset = $(this).offset();
+      date = info.substring(comma + 1);
 
     $timeline.append($('<div>')
-      .addClass("company " + colorClass)
+      .addClass("company wow fadeInLeft " + colorClass)
       .append($('<p>')
         .addClass("date")
         .html(date)
         .css("left", index * -10)
       )
-      .css("margin-top", offset.top)
-      .css("height", height - offset.top)
     );
+  });
+}
+
+function companyTimelineHeight() {
+  $timeline.css("height", height);
+
+  $('[data-company]').each(function() {
+    var info = $(this).attr('data-company'),
+      company = info.substring(0, info.indexOf(','))
+
+    $timeline.find('.' + company).css("margin-top", $(this).offset().top).css("height", height - $(this).offset().top);
   });
 }
 
@@ -122,93 +135,100 @@ function d3NodePaths() {
 
   var points = [];
 
-  $('[data-stop]').each(function() {
-    var $elem = $(this);
-    var value = $elem.attr('data-stop');
+  function setPoints() {
+    $('[data-stop]').each(function() {
+      var $elem = $(this);
+      var value = $elem.attr('data-stop');
 
-    var positions = value.split(',');
+      var positions = value.split(',');
 
-    $.each(positions, function(index, value) {
-      var hyphenPos = value.indexOf('-'),
-        xAxis = value.substring(hyphenPos + 1),
-        yAxis = value.substring(0, hyphenPos),
-        offset = $elem.offset(),
-        width = $elem.outerWidth(),
-        height = $elem.outerHeight(),
-        stop = [];
+      $.each(positions, function(index, value) {
+        var hyphenPos = value.indexOf('-'),
+          xAxis = value.substring(hyphenPos + 1),
+          yAxis = value.substring(0, hyphenPos),
+          offset = $elem.offset(),
+          width = $elem.outerWidth(),
+          height = $elem.outerHeight(),
+          stop = [];
 
-      if(value !== "left-circle" && value !== "right-circle") {
-        if(xAxis === "left")
-          stop.push(offset.left);
-        else if(xAxis === "center")
-          stop.push(offset.left + (width / 2));
-        else if(xAxis === "right")
-          stop.push(offset.left + width);
+        if(value !== "left-circle" && value !== "right-circle") {
+          if(xAxis === "left")
+            stop.push(offset.left);
+          else if(xAxis === "center")
+            stop.push(offset.left + (width / 2));
+          else if(xAxis === "right")
+            stop.push(offset.left + width);
 
-        if(yAxis === "top")
-          stop.push(offset.top);
-        else if(yAxis === "middle")
-          stop.push(offset.top + (height / 2));
-        else if(yAxis === "bottom")
-          stop.push(offset.top + height);
+          if(yAxis === "top")
+            stop.push(offset.top);
+          else if(yAxis === "middle")
+            stop.push(offset.top + (height / 2));
+          else if(yAxis === "bottom")
+            stop.push(offset.top + height);
 
-        points.push(stop);
-      }
-      else {
-        var radius = width / 2,
-          centerX = offset.left + (width / 2),
-          centerY = offset.top + (height / 2);
-
-        function angleCoord(angle) {
-          return [centerX + (radius * Math.sin(angle)), centerY + (radius * Math.cos(angle))];
+          points.push(stop);
         }
+        else {
+          var radius = width / 2,
+            centerX = offset.left + (width / 2),
+            centerY = offset.top + (height / 2);
 
-        if(value === "left-circle") {
-          points.push(
-            angleCoord(-90),
-            angleCoord(-45),
-            angleCoord(0),
-            angleCoord(45),
-            angleCoord(90),
-            angleCoord(135),
-            angleCoord(180),
-            angleCoord(225),
-            angleCoord(270)
-          );
+          function angleCoord(angle) {
+            return [centerX + (radius * Math.sin(angle)), centerY + (radius * Math.cos(angle))];
+          }
+
+          if(value === "left-circle") {
+            points.push(
+              angleCoord(-90),
+              angleCoord(-45),
+              angleCoord(0),
+              angleCoord(45),
+              angleCoord(90),
+              angleCoord(135),
+              angleCoord(180),
+              angleCoord(225),
+              angleCoord(270)
+            );
+          }
+          else if(value === "right-circle") {
+            points.push(
+              angleCoord(90),
+              angleCoord(45),
+              angleCoord(0),
+              angleCoord(-45),
+              angleCoord(-90),
+              angleCoord(-135),
+              angleCoord(-180),
+              angleCoord(-225),
+              angleCoord(-270)
+            );
+          }
         }
-        else if(value === "right-circle") {
-          points.push(
-            angleCoord(90),
-            angleCoord(45),
-            angleCoord(0),
-            angleCoord(-45),
-            angleCoord(-90),
-            angleCoord(-135),
-            angleCoord(-180),
-            angleCoord(-225),
-            angleCoord(-270)
-          );
-        }
-      }
+      });
     });
-  });
+  }
+
+  setPoints();
 
   var line = d3.svg.line()
     .interpolate("basis");
 
-  var path1 = svg.append("path")
+  var group = svg.append("g")
+    .attr("id", "trail-hold");
+
+  var path1 = group.append("path")
     .datum(points)
     .attr("id", "gray-path")
     .attr("class", "line animated fadeIn")
     .attr("d", line);
 
-  var path2 = svg.append("path")
+  var path2 = group.append("path")
     .datum(points)
     .attr("id", "red-path")
     .attr("class", "line")
     .attr("d", line);
 
-  var node = svg.append("circle")
+  var node = group.append("circle")
     .attr("id", "node")
     .attr("r", 12)
     .attr("cx", 0)
@@ -242,5 +262,13 @@ function d3NodePaths() {
     drawLineNode();
   }, 10)).resize(_.throttle(function() {
     svg.attr("width", windowWidth).attr("height", height);
-  }, 10));
+  }, 10)).resize(_.debounce(function() {
+    points = [];
+    setPoints();
+
+    path1.datum(points).attr("d", line);
+    path2.datum(points).attr("d", line);
+
+    drawLineNode();
+  }, 100));
 }

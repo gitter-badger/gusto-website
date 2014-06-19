@@ -51,7 +51,7 @@ section {
     }
     h1 { margin-bottom: 15px; }
   }
-  &#poliana, &#on-the-list, &#jumpstart-foundry, &#here {
+  &#poliana, &#on-the-list, &#jumpstart-foundry, &#gusto {
     .large-3 {
       img {
         width: 140px;
@@ -125,8 +125,8 @@ section {
     jsf $jumpstart
   );
   $timeline-num: length($companies);
-  $timeline-small-width: $timeline-num + 0px;
-  $timeline-large-width: $timeline-small-width * 2.5;
+  $timeline-small-width: $timeline-num + 1px;
+  $timeline-large-width: $timeline-small-width * 2;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -148,7 +148,8 @@ section {
       position: absolute;
       top: -20px;
       height: 20px;
-      width: 50px;
+      width: 60px;
+      text-align: right;
       @extend .brandon-grotesque;
       font-size: 0.8em;
       font-weight: bold;
@@ -157,4 +158,9 @@ section {
       @media #{$medium-up} { display: block; }
     }
   }
+}
+
+#footer {
+  background: $black;
+  height: 160px;
 }
