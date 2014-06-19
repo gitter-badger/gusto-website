@@ -85,7 +85,7 @@ $(window).resize(function() {
   else if(getMediaQuery() == "small")
     $svg.remove();
 
-  companyTimelineHeight();
+  companyTimelineHeight(height);
 });
 
 // Add capitalize to strings
