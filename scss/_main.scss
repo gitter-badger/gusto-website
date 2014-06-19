@@ -27,6 +27,13 @@
       }
     }
   }
+  &.center {
+    display: table;
+    margin: 0px auto 20px auto;
+    li {
+      &:first-of-type { margin-left: 0px; }
+    }
+  }
 }
 
 
@@ -91,6 +98,53 @@ section {
   &#hard-working {
     @extend .vertical-padding-80;
     @extend .gusto-background-color;
+    * { @extend .white-text-color; }
+    h3 { @extend .vertical-margin-20; }
+    .project-image {
+      $project-size: 160px;
+      display: block;
+      width: $project-size;
+      height: $project-size;
+      overflow: hidden;
+      position: relative;
+      background: $white;
+      margin: 20px auto;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      @include background-size-working(75%);
+      @include border-radius-working(1000px);
+      a {
+        position: absolute;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: $project-size + 10;
+        font-size: 2em;
+        opacity: 0;
+        @include single-transition(opacity, $time, linear);
+        &:hover { opacity: 1; }
+      }
+      &:after {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background: $black;
+        opacity: 0;
+        @include border-radius-working(1000px);
+        @include single-transition(opacity, $time, linear);
+        content: "";
+        width: 100%;
+        height: 100%;
+      }
+      &:hover {
+        &:after { opacity: 0.5; }
+      }
+    }
+    .inline-list {
+      span { font-size: 1.5em; }
+    }
   }
 }
 
