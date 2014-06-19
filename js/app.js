@@ -39,31 +39,7 @@ $(document).ready(function() {
     }
   });
 
-  $('.animated').waypoint(function(direction) {
-    var enterClass = $(this).attr('data-enter');
-    var exitClass = $(this).attr('data-exit');
-
-    if(!$(this).hasClass('company')) {
-      if(direction === "down")
-        $(this).removeClass(exitClass).addClass(enterClass);
-      else
-        $(this).removeClass(enterClass).addClass(exitClass);
-    }
-    else
-      $(this).removeClass(exitClass).addClass(enterClass);
-  }, { offset: '100%' }).waypoint(function(direction) {
-    var enterClass = $(this).attr('data-enter');
-    var exitClass = $(this).attr('data-exit');
-
-    if(!$(this).hasClass('company')) {
-      if(direction == "down")
-        $(this).removeClass(enterClass).addClass(exitClass);
-      else
-        $(this).removeClass(exitClass).addClass(enterClass);
-    }
-    else
-      $(this).removeClass(exitClass).addClass(enterClass);
-  });
+  new WOW().init();
 });
 
 $(window).scroll(function() {
@@ -127,9 +103,7 @@ function companyTimeline() {
       date = info.substring(comma + 1);
 
     $timeline.append($('<div>')
-      .addClass("company animated " + colorClass)
-      .attr("data-enter", "fadeInLeft")
-      .attr("data-exit", "fadeOutLeft")
+      .addClass("company wow fadeInLeft " + colorClass)
       .append($('<p>')
         .addClass("date")
         .html(date)
