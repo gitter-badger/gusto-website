@@ -39,7 +39,23 @@ $(document).ready(function() {
     }
   });
 
-  new WOW().init();
+  $('.animated').waypoint(function(direction) {
+    var enterClass = $(this).attr('data-enter');
+    var exitClass = $(this).attr('data-exit');
+
+    if(direction === "down")
+      $(this).removeClass(exitClass).addClass(enterClass);
+    else
+      $(this).removeClass(enterClass).addClass(exitClass);
+  }, { offset: '100%' }).waypoint(function(direction) {
+    var enterClass = $(this).attr('data-enter');
+    var exitClass = $(this).attr('data-exit');
+
+    if(direction == "down")
+      $(this).removeClass(enterClass).addClass(exitClass);
+    else
+      $(this).removeClass(exitClass).addClass(enterClass);
+  });
 });
 
 $(window).scroll(function() {
