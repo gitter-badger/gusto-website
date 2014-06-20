@@ -36,7 +36,6 @@
   }
 }
 
-
 section {
   @extend .vertical-padding-20;
   &.heading {
@@ -268,6 +267,24 @@ section {
         width: 160px;
         @media #{$medium-only} { width: 120px; }
         @include border-radius-working(1000px);
+      }
+    }
+  }
+  &#talkative {
+    @extend .vertical-padding-40;
+    @extend .white-background-color;
+    #contact-form {
+      input, textarea {
+        @extend .proxima-nova;
+        font-weight: 300;
+        &[type=submit] {
+          @extend .brandon-grotesque;
+          font-weight: 700;
+        }
+      }
+      textarea {
+        resize: none;
+        height: 100px;
       }
     }
   }

@@ -12,9 +12,6 @@ var $footer = $('#footer'),
 $(document).foundation();
 
 $(document).ready(function() {
-  if(location.hash.length > 1)
-    scrollToPos(location.hash);
-
   $('a').on('click', function(event) {
     var link = $(this).attr('href');
 
@@ -72,12 +69,50 @@ $(document).ready(function() {
   });
 
   d3StatGraphs();
+
+  $('#contact-form').on('submit', function(event) {
+    event.preventDefault();
+
+    var $name = $(this).find('[name=name]'),
+      $email = $(this).find('[name=email]'),
+      $message = $(this).find('[name=message]'),
+      $submit = $(this).find('[name=submit]');
+
+      $.ajax({
+        type: "POST",
+        url: "https://mandrillapp.com/api/1.0/messages/send.json",
+        data: {
+          "key": "ZeY-CdysVOD7M47CJYPkSQ",
+          "message": {
+            "from_email": $email.val(),
+            "from_name": $name.val(),
+            'headers': {
+              'Reply-To': $email.val()
+            },
+            "to": [
+                {
+                  "email": "contact@gusto.is",
+                  "name": "Gusto",
+                  "type": "to"
+                }
+              ],
+            "autotext": "true",
+            "subject": "Talk with Gusto",
+            "text": $message.val()
+          }
+        }
+      }).done(function(response) {
+        $name.val('');
+        $email.val('');
+        $message.val('');
+     });
+  });
 });
 
 $(window).load(function() {
   if(getMediaQuery() != "small")
     d3NodePaths();
-    
+
   $(window).trigger('resize');
 }).scroll(function() {
   scrollPos = $(window).scrollTop();
