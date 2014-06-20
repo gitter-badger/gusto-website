@@ -81,16 +81,19 @@ section {
       }
       .traits {
         @extend .vertical-margin-40;
-        span {
-          font-size: 3em;
-          text-align: center;
-          display: block;
-        }
-        p {
-          @extend .brandon-grotesque;
-          font-weight: 700;
-          text-align: center;
-          margin: 10px 0px 30px 0px;
+        .large-3 {
+          height: 120px;
+          span {
+            font-size: 3em;
+            text-align: center;
+            display: block;
+          }
+          p {
+            @extend .brandon-grotesque;
+            font-weight: 700;
+            text-align: center;
+            margin: 10px 0px 30px 0px;
+          }
         }
       }
     }
@@ -247,6 +250,24 @@ section {
       }
       &#patrick {
         .headturn { background-image: url('../images/patrick-sprite.png'); }
+      }
+    }
+  }
+  &#well-spoken {
+    @extend .vertical-padding-40;
+    @extend .white-background-color;
+    .row {
+      margin: 40px auto;
+      h2 {
+        & + p { font-size: 1.25em; }
+      }
+      img {
+        display: block;
+        margin: 0px auto;
+        height: auto;
+        width: 160px;
+        @media #{$medium-only} { width: 120px; }
+        @include border-radius-working(1000px);
       }
     }
   }

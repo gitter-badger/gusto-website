@@ -12,9 +12,6 @@ var $footer = $('#footer'),
 $(document).foundation();
 
 $(document).ready(function() {
-  if(getMediaQuery() != "small")
-    d3NodePaths();
-
   if(location.hash.length > 1)
     scrollToPos(location.hash);
 
@@ -78,6 +75,9 @@ $(document).ready(function() {
 });
 
 $(window).load(function() {
+  if(getMediaQuery() != "small")
+    d3NodePaths();
+    
   $(window).trigger('resize');
 }).scroll(function() {
   scrollPos = $(window).scrollTop();
