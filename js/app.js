@@ -77,11 +77,11 @@ $(document).ready(function() {
   d3StatGraphs();
 });
 
-$(window).scroll(function() {
+$(window).load(function() {
+  $(window).trigger('resize');
+}).scroll(function() {
   scrollPos = $(window).scrollTop();
-});
-
-$(window).resize(function() {
+}).resize(function() {
   width = $(document).width();
   height = $footer.offset().top + $footer.outerHeight(true);
   aspect = width / height;
@@ -96,7 +96,7 @@ $(window).resize(function() {
   else if(getMediaQuery() == "small")
     $svg.remove();
 
-  companyTimelineHeight(height);
+  companyTimelineHeight();
 });
 
 // Add capitalize to strings
