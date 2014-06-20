@@ -52,6 +52,27 @@ $(document).ready(function() {
   new WOW({
     mobile: false
   }).init();
+
+  $('.headturn').on('mousemove', function(event) {
+    var width = $(this).width(),
+      degrees = width / 5,
+      relX = event.pageX - $(this).offset().left;
+
+    if(relX >= 0 && relX < degrees)
+      $(this).css('background-position', "0px 0px");
+    else if(relX >= degrees * 1 && relX < degrees * 2)
+      $(this).css('background-position', (width * -1) + "px 0px");
+    else if(relX >= degrees * 2 && relX < degrees * 3)
+      $(this).css('background-position', (width * -2) + "px 0px");
+    else if(relX >= degrees * 3 && relX < degrees * 4)
+      $(this).css('background-position', (width * -3) + "px 0px");
+    else
+      $(this).css('background-position', (width * -4) + "px 0px");
+  }).on('mouseleave', function() {
+    var width = $(this).width();
+
+    $(this).css('background-position', (width * -2) + "px 0px");
+  });
 });
 
 $(window).scroll(function() {

@@ -184,26 +184,44 @@ section {
           &.symbol { font-size: 4em; }
         }
       }
-      #grayson, #patrick {
+      .flyIn {
         position: absolute;
         width: $person-small-width;
         height: auto;
         display: block;
         @media #{$medium-up} { width: $person-large-width; }
-      }
-      #grayson {
-        left: 50%;
-        margin-left: -1 * $person-small-width;
-        @media #{$medium-up} { margin-left: (-1 * $person-large-width) + 10; }
-      }
-      #patrick {
-        right: 50%;
-        margin-right: -1 * $person-small-width;
-        @media #{$medium-up} { margin-right: (-1 * $person-large-width) + 10; }
+        &:first-of-type {
+          left: 50%;
+          margin-left: -1 * $person-small-width;
+          @media #{$medium-up} { margin-left: (-1 * $person-large-width) + 10; }
+        }
+        &:last-of-type {
+          right: 50%;
+          margin-right: -1 * $person-small-width;
+          @media #{$medium-up} { margin-right: (-1 * $person-large-width) + 10; }
+        }
       }
     }
     .large-6 {
       .role { font-size: 1.1em; }
+      .headturn {
+        $headturn-width: 377px;
+        position: relative;
+        background-repeat: no-repeat;
+        background-size: auto 250px;
+        background-position: ($headturn-width * -2) 0px;
+        height: 250px;
+        width: $headturn-width;
+        display: block;
+        overflow: hidden;
+        margin: 20px auto;
+      }
+      &#grayson {
+        .headturn { background-image: url('../images/grayson-sprite.png'); }
+      }
+      &#patrick {
+        .headturn { background-image: url('../images/patrick-sprite.png'); }
+      }
     }
   }
 }
