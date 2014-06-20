@@ -49,7 +49,9 @@ $(document).ready(function() {
     }
   });
 
-  new WOW().init();
+  new WOW({
+    mobile: false
+  }).init();
 });
 
 $(window).scroll(function() {
