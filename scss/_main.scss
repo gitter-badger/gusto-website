@@ -205,16 +205,42 @@ section {
     .large-6 {
       .role { font-size: 1.1em; }
       .headturn {
-        $headturn-width: 377px;
+        $headturn-width: 300px;
         position: relative;
         background-repeat: no-repeat;
-        background-size: auto 250px;
+        background-size: ($headturn-width * 5) 200px;
         background-position: ($headturn-width * -2) 0px;
-        height: 250px;
+        height: 200px;
         width: $headturn-width;
         display: block;
         overflow: hidden;
-        margin: 20px auto;
+        margin: 10px auto;
+      }
+      .stat-graphs {
+        li {
+          p {
+            font-size: 0.9em;
+            text-align: center;
+          }
+          .arc {
+            &:last-of-type path { fill: $lightgray; }
+          }
+          .graph-1 {
+            .arc {
+              &:first-of-type path { fill: $gusto; }
+            }
+          }
+          .graph-2 {
+            .arc {
+              &:first-of-type path { fill: $green; }
+            }
+          }
+          .graph-3 {
+            .arc {
+              &:first-of-type path { fill: $blue; }
+            }
+          }
+        }
       }
       &#grayson {
         .headturn { background-image: url('../images/grayson-sprite.png'); }

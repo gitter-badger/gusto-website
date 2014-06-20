@@ -73,6 +73,8 @@ $(document).ready(function() {
 
     $(this).css('background-position', (width * -2) + "px 0px");
   });
+
+  d3StatGraphs();
 });
 
 $(window).scroll(function() {
@@ -304,4 +306,56 @@ function d3NodePaths() {
 
     drawLineNode();
   }, 100));
+}
+
+function d3StatGraphs() {
+  $('.stat-graphs').each(function() {
+    $(this).children('li').each(function(index) {
+      var $elem = $(this),
+        width = $elem.width(),
+        height = width,
+        radius = Math.min(width, height) / 2;
+
+      $elem.css("height", height + 100);
+
+      var arc = d3.svg.arc()
+        .outerRadius(radius - 10)
+        .innerRadius(0);
+
+      var pie = d3.layout.pie()
+        .sort(null)
+        .value(function(d) { return d.val; });
+
+      var theValue = +$elem.attr('data-value'),
+        remainder = 100 - theValue,
+        data = [{ val: theValue }, { val: remainder }];
+
+      var svg = d3.select(this).append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("class", "graph-" + (index + 1))
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("preserveAspectRatio", "xMidYMid")
+        .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+      var g = svg.selectAll(".arc")
+        .data(pie(data))
+        .enter().append("g")
+        .attr("class", "arc");
+
+      g.append("path")
+        .attr("d", arc);
+
+      $elem.append($('<p>').html($elem.attr('data-label')));
+
+      $(window).resize(_.throttle(function() {
+        width = $elem.width();
+        height = width;
+
+        $elem.css("height", height + 100);
+        $elem.find('svg').attr("width", width).attr("height", height);
+      }, 10));
+    });
+  });
 }
