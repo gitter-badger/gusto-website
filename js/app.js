@@ -18,6 +18,16 @@ $(document).ready(function() {
   if(location.hash.length > 1)
     scrollToPos(location.hash);
 
+  $('a').on('click', function(event) {
+    var link = $(this).attr('href');
+
+    if(link.indexOf('#') != -1) {
+      event.preventDefault();
+
+      scrollToPos(link);
+    }
+  });
+
   companyTimeline();
   companyTimelineHeight();
 

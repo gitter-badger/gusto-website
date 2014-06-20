@@ -61,8 +61,8 @@ $colors: (
   green $green,
   white $white,
   black $black,
-  lightgray $lightgray,
-  darkgray $darkgray
+  light $lightgray,
+  dark $darkgray
 );
 
 @mixin color-classes() {
