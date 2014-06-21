@@ -409,7 +409,8 @@ function d3PongGame() {
 
   var $pong = $('#pong svg'),
     selected = false,
-    paddleSpeed = 10,
+    paddleSpeed = 5,
+    iterations = 0,
     radius = 12,
     actualRadius = radius + 4,
     game,
@@ -421,11 +422,15 @@ function d3PongGame() {
 
   var rect = svg.append("rect")
     .attr("width", rectWidth)
-    .attr("height", rectHeight);
+    .attr("height", rectHeight)
+    .attr("rx", 5)
+    .attr("ry", 5);
 
   var myRect = svg.append("rect")
     .attr("width", rectWidth)
-    .attr("height", rectHeight);
+    .attr("height", rectHeight)
+    .attr("rx", 5)
+    .attr("ry", 5);
 
   var instructionsText = svg.append("text")
     .attr("x", 40)
@@ -476,9 +481,10 @@ function d3PongGame() {
     scoreText.text(score.user + " - " + score.gusto);
 
     resetPositions();
+    iterations = 0;
 
     if(score.user == 3 || score.gusto == 3) {
-      clearInterval(game);
+      killGame();
 
       if(score.user == 3)
         $pong.parent().next().find('h4').text('Very good, Young Pongawan!');
@@ -524,17 +530,46 @@ function d3PongGame() {
   }
 
   function moveBall() {
-    var newX = parseInt(ball.attr("dx")) + parseInt(ball.attr("cx")),
-      newY = parseInt(ball.attr("dy")) + parseInt(ball.attr("cy"));
-
-    ball.attr("cx", newX)
-      .attr("cy", newY);
+    ball.attr("cx", parseInt(ball.attr("dx")) + parseInt(ball.attr("cx")))
+      .attr("cy", parseInt(ball.attr("dy")) + parseInt(ball.attr("cy")));
   }
+
+  // Because it's pretty dumb
+  function artificialStupidity() {
+    iterations++;
+
+    if(iterations % 6 == 0) {
+      var ballX = parseInt(ball.attr("cx")),
+        ballY = parseInt(ball.attr("cy")),
+        currentPos = parseInt(rect.attr("y")),
+        newY;
+
+      if(ballY - actualRadius >= currentPos)
+        newY = currentPos + paddleSpeed;
+      else
+        newY = currentPos - paddleSpeed;
+
+      if(newY >= 0 && newY + rectHeight <= height)
+        rect.attr("y", newY);
+    }
+  }
+
+  var ready = false;
 
   function loop() {
-    moveBall();
-    checkCollisions();
+    if(ready) {
+      moveBall();
+      checkCollisions();
+      artificialStupidity();
+    }
   }
+
+  function killGame() {
+    clearInterval(game);
+    game = 0;
+  }
+
+  game = setInterval(loop, 5);
 
   resetPositions();
   setScore();
@@ -542,7 +577,7 @@ function d3PongGame() {
 
   $pong.parent().find('.button').on('click', function() {
     $pong.parent().find('.modal, .button').fadeOut(500, function() {
-      game = setInterval(loop, 10);
+      ready = true;
     });
   });
 

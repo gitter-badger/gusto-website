@@ -343,6 +343,8 @@ section {
   }
 }
 
+section:not(#talkative) { display: none !important; }
+
 #trail {
   position: absolute;
   background: $white;
