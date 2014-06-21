@@ -70,6 +70,8 @@ $(document).ready(function() {
 
   d3StatGraphs();
 
+  d3PongGame();
+
   $('#contact-form').on('submit', function(event) {
     event.preventDefault();
 
@@ -392,5 +394,178 @@ function d3StatGraphs() {
         $elem.find('svg').attr("width", width).attr("height", height);
       }, 10));
     });
+  });
+}
+
+function d3PongGame() {
+  var width = $(window).width() * 0.9,
+    height = 500;
+
+  var svg = d3.select('#pong').append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("viewBox", "0 0 " + width + " " + height)
+    .attr("preserveAspectRatio", "xMidYMid");
+
+  var $pong = $('#pong svg'),
+    selected = false,
+    paddleSpeed = 10,
+    radius = 12,
+    actualRadius = radius + 4,
+    game,
+    score = { user: 0, gusto: 0 };
+
+  var rectWidth = 10,
+    rectHeight = 60,
+    rectDistance = 10;
+
+  var rect = svg.append("rect")
+    .attr("width", rectWidth)
+    .attr("height", rectHeight);
+
+  var myRect = svg.append("rect")
+    .attr("width", rectWidth)
+    .attr("height", rectHeight);
+
+  var instructionsText = svg.append("text")
+    .attr("x", 40)
+    .attr("y", height - 20)
+    .attr("class", "instructions")
+    .text("W = Up / S = Down");
+
+  var scoreText = svg.append("text")
+    .attr("x", width / 2)
+    .attr("y", height - 60)
+    .attr("class", "score")
+    .attr("text-anchor", "middle");
+
+  var rulesText = svg.append("text")
+    .attr("x", width / 2)
+    .attr("y", height - 20)
+    .attr("class", "rules")
+    .attr("text-anchor", "middle")
+    .text("First to 3 games");
+
+  var ball = svg.append("circle")
+    .attr("r", radius);
+
+  $pong.parent().append($('<div>')
+    .addClass('modal')
+  ).append($('<p>')
+    .addClass('button radius')
+    .text('Let\'s play some pong!')
+  );
+
+  function resetPositions() {
+    rect.attr("x", width - rectDistance)
+      .attr("y", (height / 2) - (rectHeight / 2));
+
+    myRect.attr("x", rectDistance)
+      .attr("y", (height / 2) - (rectHeight / 2));
+
+    ball.attr("cx", (width / 2))
+      .attr("cy", (height / 2));
+  }
+
+  function setScore(account) {
+    if(account == "user" && score.user + 1 <= 3)
+      score.user++;
+    else if(account == "gusto" && score.gusto + 1 <= 3)
+      score.gusto++;
+
+    scoreText.text(score.user + " - " + score.gusto);
+
+    resetPositions();
+
+    if(score.user == 3 || score.gusto == 3) {
+      clearInterval(game);
+
+      if(score.user == 3)
+        $pong.parent().next().find('h4').text('Very good, Young Pongawan!');
+      else if(score.gusto == 3)
+        $pong.parent().next().find('h4').text('Did you find the keyboard?');
+
+      $pong.fadeOut(500, function() {
+        $(this).parent().next().addClass('winner');
+
+        $(window).trigger('resize');
+      })
+    }
+  }
+
+  function changeDirection(x, y) {
+    ball.attr("dx", x).attr("dy", y);
+  }
+
+  function checkCollisions() {
+    var x = parseInt(ball.attr("cx")),
+      y = parseInt(ball.attr("cy")),
+      myRectX = parseInt(myRect.attr("x")),
+      myRectY = parseInt(myRect.attr("y")),
+      rectX = parseInt(rect.attr("x")),
+      rectY = parseInt(rect.attr("y")),
+      dx = parseInt(ball.attr("dx")),
+      dy = parseInt(ball.attr("dy"));
+
+    // Paddles
+    if((x <= myRectX + rectWidth + actualRadius && (y >= myRectY - actualRadius && y <= myRectY + rectHeight + actualRadius)) ||
+      (x >= rectX - actualRadius && (y >= rectY - actualRadius && y <= rectY + rectHeight + actualRadius)))
+      changeDirection(-1 * dx, dy);
+
+    // Top and bottom borders
+    if(y <= actualRadius || y >= height - actualRadius)
+      changeDirection(dx, -1 * dy);
+
+    // Score!
+    if(x <= actualRadius)
+      setScore("gusto");
+    else if(x >= width - actualRadius)
+      setScore("user");
+  }
+
+  function moveBall() {
+    var newX = parseInt(ball.attr("dx")) + parseInt(ball.attr("cx")),
+      newY = parseInt(ball.attr("dy")) + parseInt(ball.attr("cy"));
+
+    ball.attr("cx", newX)
+      .attr("cy", newY);
+  }
+
+  function loop() {
+    moveBall();
+    checkCollisions();
+  }
+
+  resetPositions();
+  setScore();
+  changeDirection(-1, -1);
+
+  $pong.parent().find('.button').on('click', function() {
+    $pong.parent().find('.modal, .button').fadeOut(500, function() {
+      game = setInterval(loop, 10);
+    });
+  });
+
+  $pong.on("mouseenter", function() {
+    selected = true;
+  }).on("mouseleave", function() {
+    selected = false;
+  })
+
+  d3.select("body").on("keydown", function() {
+    if(selected) {
+      if(d3.event.keyCode == 87) {
+        var currentY = parseInt(myRect.attr("y"));
+
+        if(currentY - paddleSpeed >= 0)
+          myRect.attr("y", currentY - paddleSpeed);
+      }
+      else if(d3.event.keyCode == 83) {
+        var currentY = parseInt(myRect.attr("y"));
+
+        if(currentY + rectHeight + paddleSpeed <= height)
+          myRect.attr("y", currentY + paddleSpeed);
+      }
+    }
   });
 }

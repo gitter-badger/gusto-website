@@ -271,9 +271,62 @@ section {
     }
   }
   &#talkative {
-    @extend .vertical-padding-40;
+    padding: 0px;
     @extend .white-background-color;
+    #pong {
+      background: $lightgray;
+      position: relative;
+      svg {
+        display: block;
+        margin: 0px auto;
+        rect { fill: $black; }
+        circle {
+          fill: $lightgray;
+          stroke: $gusto;
+          stroke-width: 10px;
+        }
+        .instructions, .rules {
+          @extend .proxima-nova;
+          fill: $white;
+          font-weight: 300;
+          font-size: 0.9em;
+        }
+        .score {
+          @extend .brandon-grotesque;
+          fill: $white;
+          font-weight: 700;
+          font-size: 2.5em;
+        }
+        .rules { text-transform: uppercase; }
+      }
+      .modal {
+        position: absolute;
+        background: $black;
+        opacity: 0.5;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+      }
+      .button {
+        position: absolute;
+        width: 300px;
+        height: 60px;
+        line-height: 2em;
+        top: 50%;
+        left: 50%;
+        margin-left: -150px;
+        margin-top: -30px;
+        @extend .brandon-grotesque;
+        font-weight: 700;
+      }
+      & + div {
+        display: none;
+        &.winner { display: block; }
+      }
+    }
     #contact-form {
+      @extend .vertical-padding-40;
       input, textarea {
         @extend .proxima-nova;
         font-weight: 300;
