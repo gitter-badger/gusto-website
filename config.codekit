@@ -1792,155 +1792,6 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/bower_components\/jquery.stellar\/grunt.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/grunt.js",
-		"outputAbbreviatedPath": "\/bower_components\/jquery.stellar\/min\/grunt-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/bower_components\/jquery.stellar\/jquery.stellar.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/jquery.stellar.js",
-		"outputAbbreviatedPath": "\/bower_components\/jquery.stellar\/min\/jquery.stellar-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/bower_components\/jquery.stellar\/jquery.stellar.min.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/jquery.stellar.min.js",
-		"outputAbbreviatedPath": "\/bower_components\/jquery.stellar\/min\/jquery.stellar.min-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/bower_components\/jquery.stellar\/libs\/jquery\/jquery-1.4.3.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/libs\/jquery\/jquery-1.4.3.js",
-		"outputAbbreviatedPath": "\/bower_components\/jquery.stellar\/libs\/jquery\/min\/jquery-1.4.3-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/bower_components\/jquery.stellar\/libs\/jquery\/jquery-1.9.1.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/libs\/jquery\/jquery-1.9.1.js",
-		"outputAbbreviatedPath": "\/bower_components\/jquery.stellar\/libs\/jquery\/min\/jquery-1.9.1-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/bower_components\/jquery.stellar\/libs\/jquery\/jquery-2.0.0b2.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/libs\/jquery\/jquery-2.0.0b2.js",
-		"outputAbbreviatedPath": "\/bower_components\/jquery.stellar\/libs\/jquery\/min\/jquery-2.0.0b2-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/bower_components\/jquery.stellar\/libs\/qunit\/qunit.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/libs\/qunit\/qunit.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/bower_components\/jquery.stellar\/libs\/qunit\/qunit.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/libs\/qunit\/qunit.js",
-		"outputAbbreviatedPath": "\/bower_components\/jquery.stellar\/libs\/qunit\/min\/qunit-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/bower_components\/jquery.stellar\/README.md": {
-		"enableFootnoteSupport": 0,
-		"enableSmartyPants": 1,
-		"expandTabs": 1,
-		"fileType": 4096,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/README.md",
-		"outputAbbreviatedPath": "\/bower_components\/jquery.stellar\/README.html",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/bower_components\/jquery.stellar\/src\/jquery.stellar.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/src\/jquery.stellar.js",
-		"outputAbbreviatedPath": "\/bower_components\/jquery.stellar\/src\/min\/jquery.stellar-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/bower_components\/jquery.stellar\/test\/jquery-loader.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/test\/jquery-loader.js",
-		"outputAbbreviatedPath": "\/bower_components\/jquery.stellar\/test\/min\/jquery-loader-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/bower_components\/jquery.stellar\/test\/jquery.stellar.css": {
-		"fileType": 16,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/test\/jquery.stellar.css",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/bower_components\/jquery.stellar\/test\/jquery.stellar.html": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/test\/jquery.stellar.html",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/bower_components\/jquery.stellar\/test\/jquery.stellar_test.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/bower_components\/jquery.stellar\/test\/jquery.stellar_test.js",
-		"outputAbbreviatedPath": "\/bower_components\/jquery.stellar\/test\/min\/jquery.stellar_test-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
 	"\/bower_components\/jquery\/dist\/jquery.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -4666,6 +4517,17 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/images\/grayson-sprite.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1.26278e+06,
+		"inputAbbreviatedPath": "\/images\/grayson-sprite.png",
+		"outputAbbreviatedPath": "\/images\/grayson-sprite.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 1
+		},
 	"\/images\/grayson.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -4673,6 +4535,17 @@
 		"initialSize": 585795,
 		"inputAbbreviatedPath": "\/images\/grayson.png",
 		"outputAbbreviatedPath": "\/images\/grayson.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 1
+		},
+	"\/images\/gusto-large.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 39091,
+		"inputAbbreviatedPath": "\/images\/gusto-large.png",
+		"outputAbbreviatedPath": "\/images\/gusto-large.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 1
@@ -4721,6 +4594,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 1
 		},
+	"\/images\/patrick-sprite.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1.57453e+06,
+		"inputAbbreviatedPath": "\/images\/patrick-sprite.png",
+		"outputAbbreviatedPath": "\/images\/patrick-sprite.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 1
+		},
 	"\/images\/patrick.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -4739,6 +4623,28 @@
 		"initialSize": 7622,
 		"inputAbbreviatedPath": "\/images\/poliana.png",
 		"outputAbbreviatedPath": "\/images\/poliana.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 1
+		},
+	"\/images\/ryan-macy.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 769893,
+		"inputAbbreviatedPath": "\/images\/ryan-macy.png",
+		"outputAbbreviatedPath": "\/images\/ryan-macy.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 1
+		},
+	"\/images\/teja-yenamandra.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 318736,
+		"inputAbbreviatedPath": "\/images\/teja-yenamandra.png",
+		"outputAbbreviatedPath": "\/images\/teja-yenamandra.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 1
