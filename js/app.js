@@ -587,7 +587,6 @@ function d3PongGame() {
 
   d3.select("body").on("keydown", function() {
     if(selected) {
-
       var myPaddleSpeed = paddleSpeed * 2;
 
       if(d3.event.keyCode == 87) {
@@ -604,4 +603,8 @@ function d3PongGame() {
       }
     }
   });
+
+  $(window).resize(_.throttle(function() {
+    $pong.attr("width", width = $(window).width() * 0.9).attr("height", 500);
+  }, 10));
 }

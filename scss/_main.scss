@@ -322,7 +322,7 @@ section {
       }
       & + div {
         display: none;
-        &.winner { display: block; }
+        &.winner { display: block !important; }
       }
     }
     #contact-form {
@@ -342,8 +342,6 @@ section {
     }
   }
 }
-
-section:not(#talkative) { display: none !important; }
 
 #trail {
   position: absolute;
