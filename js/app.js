@@ -413,7 +413,6 @@ function d3PongGame() {
     iterations = 0,
     radius = 12,
     actualRadius = radius + 4,
-    game,
     score = { user: 0, gusto: 0 };
 
   var rectWidth = 10,
@@ -457,7 +456,7 @@ function d3PongGame() {
   $pong.parent().append($('<div>')
     .addClass('modal')
   ).append($('<p>')
-    .addClass('button radius')
+    .addClass('button radius secondary')
     .text('Let\'s play some pong!')
   );
 
@@ -538,7 +537,7 @@ function d3PongGame() {
   function artificialStupidity() {
     iterations++;
 
-    if(iterations % 6 == 0) {
+    if(iterations % 3 == 0) {
       var ballX = parseInt(ball.attr("cx")),
         ballY = parseInt(ball.attr("cy")),
         currentPos = parseInt(rect.attr("y")),
@@ -554,8 +553,6 @@ function d3PongGame() {
     }
   }
 
-  var ready = false;
-
   function loop() {
     if(ready) {
       moveBall();
@@ -569,11 +566,12 @@ function d3PongGame() {
     game = 0;
   }
 
-  game = setInterval(loop, 5);
+  var ready = false,
+    game = setInterval(loop, 5);
 
   resetPositions();
   setScore();
-  changeDirection(-1, -1);
+  changeDirection(-2, -2);
 
   $pong.parent().find('.button').on('click', function() {
     $pong.parent().find('.modal, .button').fadeOut(500, function() {
@@ -585,21 +583,24 @@ function d3PongGame() {
     selected = true;
   }).on("mouseleave", function() {
     selected = false;
-  })
+  });
 
   d3.select("body").on("keydown", function() {
     if(selected) {
+
+      var myPaddleSpeed = paddleSpeed * 2;
+
       if(d3.event.keyCode == 87) {
         var currentY = parseInt(myRect.attr("y"));
 
-        if(currentY - paddleSpeed >= 0)
-          myRect.attr("y", currentY - paddleSpeed);
+        if(currentY - myPaddleSpeed >= 0)
+          myRect.attr("y", currentY - myPaddleSpeed);
       }
       else if(d3.event.keyCode == 83) {
         var currentY = parseInt(myRect.attr("y"));
 
-        if(currentY + rectHeight + paddleSpeed <= height)
-          myRect.attr("y", currentY + paddleSpeed);
+        if(currentY + rectHeight + myPaddleSpeed <= height)
+          myRect.attr("y", currentY + myPaddleSpeed);
       }
     }
   });
