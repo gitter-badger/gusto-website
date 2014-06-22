@@ -315,7 +315,7 @@ function d3NodePaths() {
       percentDone = scrollPos / maxScrollTop,
       length = percentDone * pathLength,
       difference = (scrollPos + (windowHeight / 2)) - line.getPointAtLength(length).y,
-      multiplier = 0.75,
+      multiplier = 1,
       newLength = length + (multiplier * difference);
 
     // Give a multiplier of 1 immediately catch up to the center of the page
