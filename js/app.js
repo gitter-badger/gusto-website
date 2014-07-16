@@ -9,8 +9,6 @@ var $footer = $('#footer'),
   windowWidth = $(window).width(),
   windowHeight = $(window).height();
 
-$(document).foundation();
-
 $(document).ready(function() {
   $('a').on('click', function(event) {
     var link = $(this).attr('href');
@@ -43,9 +41,9 @@ $(document).ready(function() {
     }
   });
 
-  /*new WOW({
-    mobile: false
-  }).init();*/
+  $('.flyIn').waypoint(function() {
+    $(this).addClass('go');
+  }, { offset: '100%' });
 
   $('.headturn').on('mousemove', function(event) {
     var width = $(this).width(),
@@ -175,7 +173,7 @@ function companyTimeline() {
       date = info.substring(comma + 1);
 
     $timeline.append($('<div>')
-      .addClass("company wow fadeInLeft " + colorClass)
+      .addClass("company " + colorClass)
       .append($('<p>')
         .addClass("date")
         .html(date)
