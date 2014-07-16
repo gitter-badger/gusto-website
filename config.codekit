@@ -4565,6 +4565,17 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/images\/grayson-400.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 438027,
+		"inputAbbreviatedPath": "\/images\/grayson-400.png",
+		"outputAbbreviatedPath": "\/images\/grayson-400.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 1
+		},
 	"\/images\/grayson-sprite-400.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
@@ -4574,7 +4585,7 @@
 		"outputAbbreviatedPath": "\/images\/grayson-sprite-400.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/images\/grayson-sprite-400.png": {
 		"fileType": 32768,
@@ -4585,7 +4596,7 @@
 		"outputAbbreviatedPath": "\/images\/grayson-sprite-400.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/images\/grayson-sprite.png": {
 		"fileType": 32768,
@@ -4664,6 +4675,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 1
 		},
+	"\/images\/patrick-400.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 451018,
+		"inputAbbreviatedPath": "\/images\/patrick-400.png",
+		"outputAbbreviatedPath": "\/images\/patrick-400.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 1
+		},
 	"\/images\/patrick-sprite-400.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
@@ -4673,7 +4695,7 @@
 		"outputAbbreviatedPath": "\/images\/patrick-sprite-400.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/images\/patrick-sprite-400.png": {
 		"fileType": 32768,
@@ -4684,7 +4706,7 @@
 		"outputAbbreviatedPath": "\/images\/patrick-sprite-400.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/images\/patrick-sprite.png": {
 		"fileType": 32768,
@@ -4719,24 +4741,24 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 1
 		},
-	"\/images\/ryan-macy.png": {
-		"fileType": 32768,
+	"\/images\/ryan-macy.jpg": {
+		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 769893,
-		"inputAbbreviatedPath": "\/images\/ryan-macy.png",
-		"outputAbbreviatedPath": "\/images\/ryan-macy.png",
+		"initialSize": 32212,
+		"inputAbbreviatedPath": "\/images\/ryan-macy.jpg",
+		"outputAbbreviatedPath": "\/images\/ryan-macy.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 1
 		},
-	"\/images\/teja-yenamandra.png": {
-		"fileType": 32768,
+	"\/images\/teja-yenamandra.jpg": {
+		"fileType": 16384,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 318736,
-		"inputAbbreviatedPath": "\/images\/teja-yenamandra.png",
-		"outputAbbreviatedPath": "\/images\/teja-yenamandra.png",
+		"initialSize": 18514,
+		"inputAbbreviatedPath": "\/images\/teja-yenamandra.jpg",
+		"outputAbbreviatedPath": "\/images\/teja-yenamandra.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 1
