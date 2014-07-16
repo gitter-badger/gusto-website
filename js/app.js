@@ -43,9 +43,9 @@ $(document).ready(function() {
     }
   });
 
-  new WOW({
+  /*new WOW({
     mobile: false
-  }).init();
+  }).init();*/
 
   $('.headturn').on('mousemove', function(event) {
     var width = $(this).width(),
@@ -315,8 +315,14 @@ function d3NodePaths() {
       percentDone = scrollPos / maxScrollTop,
       length = percentDone * pathLength,
       difference = (scrollPos + (windowHeight / 2)) - line.getPointAtLength(length).y,
-      multiplier = 1,
-      newLength = length + (multiplier * difference);
+      multiplier = 1;
+
+    if(windowWidth >= 1200 && windowWidth < 1400)
+      multiplier = 1.1;
+    else if(windowWidth >= 1400)
+      multiplier = 1.2;
+
+    var newLength = length + (multiplier * difference);
 
     // Give a multiplier of 1 immediately catch up to the center of the page
     line.style.strokeDasharray = [newLength, pathLength].join(' ');

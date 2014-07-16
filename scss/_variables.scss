@@ -53,16 +53,16 @@ $fonts: (
 }
 
 $colors: (
-  gusto $gusto,
-  poliana $poliana,
-  otl $onthelist,
-  jsf $jumpstart,
-  blue $blue,
-  green $green,
-  white $white,
-  black $black,
-  light $lightgray,
-  dark $darkgray
+  color-gusto $gusto,
+  color-poliana $poliana,
+  color-otl $onthelist,
+  color-jsf $jumpstart,
+  color-blue $blue,
+  color-green $green,
+  color-white $white,
+  color-black $black,
+  color-light $lightgray,
+  color-dark $darkgray
 );
 
 @mixin color-classes() {
@@ -82,16 +82,16 @@ $colors: (
     }
 
     // Text color
-    .#{nth($color, 1)}-text-color { color: nth($color, 2); }
+    .#{nth($color, 1)}-text { color: nth($color, 2); }
 
     // Link color
-    a.#{nth($color, 1)}-text-color {
+    a.#{nth($color, 1)}-text {
       color: nth($color, 2);
       &:hover { color: $hover-color; }
     }
 
     // Background
-    .#{nth($color, 1)}-background-color { background: nth($color, 2); }
+    .#{nth($color, 1)}-background { background: nth($color, 2); }
 
     // Drop shadow
     .#{nth($color, 1)}-background-shadow { @include box-shadow-working(0px, 1px, 0px, nth($color, 2)); }

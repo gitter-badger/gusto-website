@@ -39,7 +39,7 @@
 section {
   @extend .vertical-padding-20;
   &.heading {
-    @extend .white-background-color;
+    @extend .color-white-background;
     @extend .vertical-padding-20;
     @extend .vertical-margin-80;
     margin-bottom: 160px;
@@ -48,7 +48,7 @@ section {
     h3, h4 { text-align: center; }
   }
   &#awesome {
-    @extend .white-background-color;
+    @extend .color-white-background;
     padding-top: 80px;
     margin-bottom: 40px;
     @media #{$medium-up} {
@@ -99,8 +99,8 @@ section {
   }
   &#hard-working {
     @extend .vertical-padding-80;
-    @extend .gusto-background-color;
-    * { @extend .white-text-color; }
+    @extend .color-gusto-background;
+    * { @extend .color-white-text; }
     h3 { @extend .vertical-margin-20; }
     .project-image {
       $project-size: 160px;
@@ -156,7 +156,7 @@ section {
       height: 300px;
       margin-bottom: 60px;
       @extend .vertical-padding-40;
-      @extend .white-background-color;
+      @extend .color-white-background;
       @media #{$medium-up} { height: 640px; }
       .arrow {
         position: absolute;
@@ -245,16 +245,16 @@ section {
         }
       }
       &#grayson {
-        .headturn { background-image: url('../images/grayson-sprite.png'); }
+        .headturn { background-image: url('../images/grayson-sprite-400.jpg'); }
       }
       &#patrick {
-        .headturn { background-image: url('../images/patrick-sprite.png'); }
+        .headturn { background-image: url('../images/patrick-sprite-400.jpg'); }
       }
     }
   }
   &#well-spoken {
     @extend .vertical-padding-40;
-    @extend .white-background-color;
+    @extend .color-white-background;
     .row {
       margin: 40px auto;
       h2 {
@@ -272,7 +272,7 @@ section {
   }
   &#talkative {
     padding: 0px;
-    @extend .white-background-color;
+    @extend .color-white-background;
     #pong {
       background: $lightgray;
       position: relative;
@@ -454,7 +454,7 @@ section {
         }
       }
       a {
-        @extend .dark-text-color;
+        @extend .color-dark-text;
         span {
           font-size: 1.5em;
           line-height: 40px;
@@ -466,7 +466,7 @@ section {
   .copyright {
     font-size: 0.8em;
     margin-top: 20px;
-    @extend .dark-text-color;
+    @extend .color-dark-text;
     @media #{$medium-up} { margin-top: 0px; }
   }
 }
