@@ -3766,6 +3766,17 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/images\/datafi.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 15596,
+		"inputAbbreviatedPath": "\/images\/datafi.jpg",
+		"outputAbbreviatedPath": "\/images\/datafi.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 1
+		},
 	"\/images\/favicon.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -3775,7 +3786,7 @@
 		"outputAbbreviatedPath": "\/images\/favicon.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
-		"processed": 0
+		"processed": 1
 		},
 	"\/images\/grayson-400.png": {
 		"fileType": 32768,
@@ -3872,6 +3883,28 @@
 		"initialSize": 7805,
 		"inputAbbreviatedPath": "\/images\/jumpstart.png",
 		"outputAbbreviatedPath": "\/images\/jumpstart.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 1
+		},
+	"\/images\/octovis.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 10601,
+		"inputAbbreviatedPath": "\/images\/octovis.jpg",
+		"outputAbbreviatedPath": "\/images\/octovis.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 1
+		},
+	"\/images\/ohcraptheapp.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 9527,
+		"inputAbbreviatedPath": "\/images\/ohcraptheapp.jpg",
+		"outputAbbreviatedPath": "\/images\/ohcraptheapp.jpg",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 1
