@@ -32,6 +32,24 @@
   <body>
     <div class="state-indicator"></div>
     <div id="timeline"></div>
+    <div class="fixed" id="header">
+      <nav class="top-bar" data-topbar data-options="scrolltop:false;">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#awesome"><img src="images/gusto-menu.png" alt=""></a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+        </ul>
+        <section class="top-bar-section">
+          <ul class="left">
+            <li><a href="#hard-working">Projects</a></li>
+            <li><a href="#sexy">Team</a></li>
+            <li><a href="#well-spoken">Testimonials</a></li>
+            <li><a href="#talkative">Contact</a></li>
+          </ul>
+        </section>
+      </nav>
+    </div>
     <section id="awesome" data-section data-stop="top-center,bottom-center">
       <div class="row">
         <div class="large-12 columns">
@@ -409,6 +427,8 @@
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/foundation/js/foundation/foundation.js"></script>
+    <script src="bower_components/foundation/js/foundation/foundation.topbar.js"></script>
     <script src="bower_components/jquery-waypoints/waypoints.min.js"></script>
     <script src="bower_components/d3/d3.min.js"></script>
     <script src="js/app.min.js"></script>

@@ -3854,6 +3854,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 1
 		},
+	"\/images\/gusto-menu.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 4119,
+		"inputAbbreviatedPath": "\/images\/gusto-menu.png",
+		"outputAbbreviatedPath": "\/images\/gusto-menu.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/images\/gusto-white.png": {
 		"fileType": 32768,
 		"ignore": 0,

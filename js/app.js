@@ -1,4 +1,5 @@
-var $footer = $('#footer'),
+var $header = $('#header'),
+  $footer = $('#footer'),
   $stateIndicator = $('.state-indicator'),
   $svg = $('#trail'),
   $timeline = $('#timeline')
@@ -10,13 +11,19 @@ var $footer = $('#footer'),
   windowHeight = $(window).height();
 
 $(document).ready(function() {
+  $(document).foundation();
+
+  if(scrollPos <= 100)
+    $header.hide();
+
   $('a').on('click', function(event) {
     var link = $(this).attr('href');
 
     if(link.indexOf('#') != -1) {
       event.preventDefault();
 
-      scrollToPos(link);
+      if(!$(this).parent().hasClass('menu-icon'))
+        scrollToPos(link);
     }
   });
 
@@ -116,6 +123,11 @@ $(window).load(function() {
   $(window).trigger('resize');
 }).scroll(function() {
   scrollPos = $(window).scrollTop();
+
+  if(scrollPos <= 100)
+    $header.fadeOut(250);
+  else
+    $header.fadeIn(250);
 }).resize(function() {
   width = $(document).width();
   height = $footer.offset().top + $footer.outerHeight(true);

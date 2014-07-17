@@ -5,6 +5,13 @@
 @include color-classes();
 @include spacing-classes();
 
+#header {
+	border-bottom: 1px solid $lightgray;
+	.name {
+		img { height: 40px; }
+	}
+}
+
 .state-indicator {
 	position: absolute;
 	top: -999em;
@@ -36,7 +43,7 @@
   }
 }
 
-section {
+section:not(.top-bar-section) {
   @extend .vertical-padding-20;
   &.heading {
     @extend .color-white-background;
