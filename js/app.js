@@ -27,13 +27,16 @@ $(document).ready(function() {
     }
   });
 
+  if(history.state != null)
+    scrollToPos('#' + history.state);
+
   companyTimeline();
   companyTimelineHeight();
 
   $('[data-section]').waypoint(function() {
     var id = $(this).attr('id');
 
-    history.pushState(null, "", "#" + id);
+    history.pushState(id, "", id);
 
     if(id !== "gusto")
       document.title = "Gusto is " + id.replace(/-/g, ' ').capitalize() + " | Build your idea with Gusto";
@@ -170,11 +173,14 @@ function scrollToPos(id, time) {
 	else
 		time = time;
 
+  var top = $(id).offset().top;
+
+  if($(id).offset().top < $(window).scrollTop())
+    top -= 60;
+
 	$('html, body').animate({
-		scrollTop: $(id).offset().top - 50
-	}, time, 'swing', function() {
-    window.location.hash = id;
-  });
+		scrollTop: top
+	}, time, 'swing');
 }
 
 function companyTimeline() {
