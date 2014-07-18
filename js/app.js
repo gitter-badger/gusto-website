@@ -601,29 +601,12 @@ function d3PongGame() {
     });
   });
 
-  $pong.on("mouseenter", function() {
-    selected = true;
-  }).on("mouseleave", function() {
-    selected = false;
-  });
+  svg.on("mousemove", function() {
+    var mousePos = d3.mouse(this);
+    console.log(height);
 
-  d3.select("body").on("keydown", function() {
-    if(selected) {
-      var myPaddleSpeed = paddleSpeed * 2;
-
-      if(d3.event.keyCode == 87) {
-        var currentY = parseInt(myRect.attr("y"));
-
-        if(currentY - myPaddleSpeed >= 0)
-          myRect.attr("y", currentY - myPaddleSpeed);
-      }
-      else if(d3.event.keyCode == 83) {
-        var currentY = parseInt(myRect.attr("y"));
-
-        if(currentY + rectHeight + myPaddleSpeed <= height)
-          myRect.attr("y", currentY + myPaddleSpeed);
-      }
-    }
+    if(mousePos[1] > 0 && mousePos[1] < height - rectHeight)
+      myRect.attr("y", mousePos[1]);
   });
 
   $(window).resize(_.throttle(function() {
