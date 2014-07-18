@@ -58,6 +58,7 @@ section:not(.top-bar-section) {
     @extend .color-white-background;
     padding-top: 80px;
     margin-bottom: 40px;
+		margin-top: -80px;
     @media #{$medium-up} {
       padding-top: 160px;
       margin-bottom: 160px;
