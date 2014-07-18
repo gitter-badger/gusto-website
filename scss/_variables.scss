@@ -113,20 +113,36 @@ $colors: (
     $large: $i * 10px;
 
     .vertical-padding-#{$i * 10} {
-      padding: $small inherit;
-      @media #{$medium-up} { padding: $large inherit; }
+      padding-top: $small;
+      padding-bottom: $small;
+      @media #{$medium-up} {
+        padding-top: $large;
+        padding-bottom: $large;
+      }
     }
     .horizontal-padding-#{$i * 10} {
-      padding: inherit $small;
-      @media #{$medium-up} { padding: inherit $large; }
+      padding-left: $small;
+      padding-right: $small;
+      @media #{$medium-up} {
+        padding-left: $large;
+        padding-right: $large;
+      }
     }
     .vertical-margin-#{$i * 10} {
-      margin: $small inherit;
-      @media #{$medium-up} { margin: $large inherit; }
+      margin-top: $small;
+      margin-bottom: $small;
+      @media #{$medium-up} {
+        margin-top: $large;
+        margin-bottom: $large;
+      }
     }
     .horizontal-margin-#{$i * 10} {
-      margin: inherit $small;
-      @media #{$medium-up} { margin: inherit $large; }
+      margin-left: $small;
+      margin-right: $small;
+      @media #{$medium-up} {
+        margin-left: $large;
+        margin-right: $large;
+      }
     }
   }
 }
