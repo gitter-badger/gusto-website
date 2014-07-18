@@ -453,12 +453,6 @@ function d3PongGame() {
     .attr("rx", 5)
     .attr("ry", 5);
 
-  var instructionsText = svg.append("text")
-    .attr("x", 40)
-    .attr("y", height - 20)
-    .attr("class", "instructions")
-    .text("W = Up / S = Down");
-
   var scoreText = svg.append("text")
     .attr("x", width / 2)
     .attr("y", height - 60)
@@ -603,7 +597,6 @@ function d3PongGame() {
 
   svg.on("mousemove", function() {
     var mousePos = d3.mouse(this);
-    console.log(height);
 
     if(mousePos[1] > 0 && mousePos[1] < height - rectHeight)
       myRect.attr("y", mousePos[1]);

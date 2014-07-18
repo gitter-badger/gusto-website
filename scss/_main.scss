@@ -310,7 +310,7 @@ section:not(.top-bar-section) {
           stroke: $gusto;
           stroke-width: 10px;
         }
-        .instructions, .rules {
+        .rules {
           @extend .proxima-nova;
           fill: $white;
           font-weight: 300;
