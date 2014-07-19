@@ -27,16 +27,11 @@ $(document).ready(function() {
     }
   });
 
-  if(history.state != null)
-    scrollToPos('#' + history.state);
-
   companyTimeline();
   companyTimelineHeight();
 
   $('[data-section]').waypoint(function() {
     var id = $(this).attr('id');
-
-    history.pushState(id, "", id);
 
     if(id !== "gusto")
       document.title = "Gusto is " + id.replace(/-/g, ' ').capitalize() + " | Build your idea with Gusto";
