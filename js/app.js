@@ -325,28 +325,31 @@ function d3NodePaths() {
   // This animates our line down the page
   // Ensure that the length of the line is the same as the length of the page!
   function drawLineNode() {
-    var line = path2[0][0],
-      pathLength = line.getTotalLength(),
-      maxScrollTop = height - windowHeight,
-      percentDone = scrollPos / maxScrollTop,
-      length = percentDone * pathLength,
-      difference = (scrollPos + (windowHeight / 2)) - line.getPointAtLength(length).y,
-      multiplier = 1;
+    var line = path2[0][0];
+      pathLength = line.getTotalLength();
 
-    if(windowWidth >= 1200 && windowWidth < 1400)
-      multiplier = 1.1;
-    else if(windowWidth >= 1400)
-      multiplier = 1.2;
+    if(!isNaN(pathLength)) {
+      var maxScrollTop = height - windowHeight,
+        percentDone = scrollPos / maxScrollTop,
+        length = percentDone * pathLength,
+        difference = (scrollPos + (windowHeight / 2)) - line.getPointAtLength(length).y,
+        multiplier = 1;
 
-    var newLength = length + (multiplier * difference);
+      if(windowWidth >= 1200 && windowWidth < 1400)
+        multiplier = 1.1;
+      else if(windowWidth >= 1400)
+        multiplier = 1.2;
 
-    // Give a multiplier of 1 immediately catch up to the center of the page
-    line.style.strokeDasharray = [newLength, pathLength].join(' ');
+      var newLength = length + (multiplier * difference);
 
-    var newPosition = line.getPointAtLength(newLength);
+      // Give a multiplier of 1 immediately catch up to the center of the page
+      line.style.strokeDasharray = [newLength, pathLength].join(' ');
 
-    // Give the node its proper placement
-    node.attr("cx", newPosition.x).attr("cy", newPosition.y);
+      var newPosition = line.getPointAtLength(newLength);
+
+      // Give the node its proper placement
+      node.attr("cx", newPosition.x).attr("cy", newPosition.y);
+    }
   }
 
   // Call it for the first time
