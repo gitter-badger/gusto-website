@@ -328,12 +328,14 @@ function d3NodePaths() {
         percentDone = scrollPos / maxScrollTop,
         length = percentDone * pathLength,
         difference = (scrollPos + (windowHeight / 2)) - line.getPointAtLength(length).y,
-        multiplier = 1;
+        multiplier;
 
-      if(windowWidth >= 1200 && windowWidth < 1400)
-        multiplier = 1.1;
-      else if(windowWidth >= 1400)
+      if(windowWidth < 1200)
         multiplier = 1.2;
+      else if(windowWidth >= 1200 && windowWidth < 1400)
+        multiplier = 1.25;
+      else if(windowWidth >= 1400)
+        multiplier = 1.3;
 
       var newLength = length + (multiplier * difference);
 
@@ -502,7 +504,7 @@ function d3PongGame() {
       if(score.user == 3)
         $pong.parent().next().find('h4').text('Very good, Young Pongawan!');
       else if(score.gusto == 3)
-        $pong.parent().next().find('h4').text('Did you find the keyboard?');
+        $pong.parent().next().find('h4').text('Did you find the mouse?');
 
       $pong.fadeOut(500, function() {
         $(this).parent().next().addClass('winner');
