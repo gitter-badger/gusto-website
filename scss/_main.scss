@@ -12,19 +12,6 @@
 	}
 }
 
-.awwwards {
-	display: block;
-	width: 70px;
-	height: 105px;
-	position: fixed;
-	right: 0px;
-	top: 100px;
-	z-index: 999999;
-	background-image: url('../images/awwwards.png');
-	background-repeat: no-repeat;
-	@include background-size(cover);
-}
-
 .state-indicator {
 	position: absolute;
 	top: -999em;
